@@ -417,13 +417,26 @@ animations = [{
 radius = 5.0
 
 [node name="player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -19)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
 animation = &"front_idle"
+offset = Vector2(0, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, 20)
+zoom = Vector2(4, 4)
+limit_left = 32
+limit_top = 32
+limit_right = 1120
+limit_bottom = 616
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_vertical_enabled = true

@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // Copyright 2016-2025 Hristo Gochkov, Mathieu Carbou, Emil Muratov
 
-//
-// WebSocket example
-//
-
 #include <Arduino.h>
 #if defined(ESP32) || defined(LIBRETINY)
 #include <AsyncTCP.h>
@@ -18,7 +14,13 @@
 #endif
 
 #include <ESPAsyncWebServer.h>
+#include <KY040.h>
 
+
+#define KNOB_CLK_PIN 21
+#define KNOB_DT_PIN 19
+static int knobValue = 0;
+static KY040 g_rotaryEncoder(KNOB_CLK_PIN,KNOB_DT_PIN);
 static AsyncWebServer server(80);
 static AsyncWebSocket ws("/ws");
 
@@ -88,17 +90,20 @@ void setup() {
   server.begin();
 }
 
-static uint32_t lastWS = 0;
-static uint32_t deltaWS = 100;
 
 static uint32_t lastHeap = 0;
 
 void loop() {
   uint32_t now = millis();
-
-  if (now - lastWS >= deltaWS) {
-    ws.printfAll("kp%.4f", (10.0 / 3.0));
-    lastWS = millis();
+  switch (g_rotaryEncoder.getRotation()) {
+    case KY040::CLOCKWISE:
+      knobValue++;
+      ws.printfAll("%i", knobValue);
+      break;
+    case KY040::COUNTERCLOCKWISE:
+      knobValue--;
+      ws.printfAll("%i", knobValue);
+      break;
   }
 
   if (now - lastHeap >= 2000) {

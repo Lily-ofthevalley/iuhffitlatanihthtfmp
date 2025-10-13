@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://dho42wacfvrba"]
+
+[ext_resource type="Script" uid="uid://bf7dhirmyqpwl" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://d18mi5urbw3l1" path="res://art/Cute_Fantasy_Free/Outdoor decoration/House.png" id="1_l6cm7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
+texture = ExtResource("1_l6cm7")
+modulate_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="Popup" type="Window" parent="."]
+oversampling_override = 1.0
+title = "Over Ons"
+initial_position = 1
+size = Vector2i(500, 300)
+visible = false
+
+[node name="AboutUs" type="Label" parent="Popup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "wij zijn squad Scriptkiddies
+bla
+bla bla"
+
+[node name="Backgroud" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.75
+offset_top = -104.0
+offset_right = 169.75
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Start"
+
+[node name="Info" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Info"
+
+[node name="ExitGame" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Sluiten"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_top = 141.0
+offset_right = 237.5
+offset_bottom = 209.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 49
+text = "iuhffitlatanihthtfmp"
+
+[connection signal="close_requested" from="Popup" to="." method="_on_popup_close"]
+[connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttons/Info" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="Buttons/ExitGame" to="." method="_on_exit_pressed"]

@@ -15,6 +15,7 @@
 
 #include <ESPAsyncWebServer.h>
 #include <KY040.h>
+#include <ArduinoJson.h>
 
 
 #define KNOB_CLK_PIN 21
@@ -26,39 +27,31 @@ static AsyncWebSocket ws("/ws");
 
 void setup() {
   Serial.begin(115200);
-
-#if SOC_WIFI_SUPPORTED || CONFIG_ESP_WIFI_REMOTE_ENABLED || LT_ARD_HAS_WIFI
   WiFi.mode(WIFI_AP);
-  WiFi.softAP("esp-captive");
-#endif
+  WiFi.softAP("SCRIPTKIDDIE", "kattenburger");
+
 
   //
-  // Run in terminal 1: websocat ws://192.168.4.1/ws => should stream data
-  // Run in terminal 2: websocat ws://192.168.4.1/ws => should stream data
-  // Run in terminal 3: websocat ws://192.168.4.1/ws => should fail:
-  //
-  // To send a message to the WebSocket server:
-  //
-  // echo "Hello!" | websocat ws://192.168.4.1/ws
+  // Run in terminal: websocat ws://192.168.4.1/ws => should stream data
   //
   ws.onEvent([](AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
     (void)len;
 
     if (type == WS_EVT_CONNECT) {
-      ws.textAll("new client connected");
-      Serial.println("ws connect");
+      ws.textAll("hello");
+      Serial.println("ws: new client connected");
       client->setCloseClientOnQueueFull(false);
       client->ping();
 
     } else if (type == WS_EVT_DISCONNECT) {
-      ws.textAll("client disconnected");
-      Serial.println("ws disconnect");
+      ws.textAll("bye");
+      Serial.println("ws: client disconnected");
 
     } else if (type == WS_EVT_ERROR) {
       Serial.println("ws error");
 
     } else if (type == WS_EVT_PONG) {
-      Serial.println("ws pong");
+      Serial.println("ws: pong");
 
     } else if (type == WS_EVT_DATA) {
       AwsFrameInfo *info = (AwsFrameInfo *)arg;
@@ -67,7 +60,15 @@ void setup() {
       if (info->final && info->index == 0 && info->len == len) {
         if (info->opcode == WS_TEXT) {
           data[len] = 0;
-          Serial.printf("ws text: %s\n", (char *)data);
+          // Serial.printf("ws text: %s\n", (char *)data);
+          msg = String((char * )data);
+          msg.trim();
+          if (msg.startsWith("COMPASS: ") && msg.length() > 9) {
+            String payload = msg.substring(9);
+            JsonDocument compass;
+            deserializeJson(compass, payload);
+            Serial.printf("Compass:\n\tEnabled: %s\n\tAngle: %f\n\n", compass["enabled"].as<bool>() ? "true" : "false", compass["angle"].as<float>());
+          }
         }
       }
     }

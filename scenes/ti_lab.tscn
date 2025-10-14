@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://be7ctlfsfho0y"]
 
-[ext_resource type="Texture2D" uid="uid://cl52wlkp68x3i" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_48w1d"]
-[ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="2_0bbp8"]
-[ext_resource type="Texture2D" uid="uid://dbq6q5sw73eu5" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/16x16/Room_Builder_free_16x16.png" id="2_q0eb6"]
+[ext_resource type="Texture2D" uid="uid://cl52wlkp68x3i" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_4ijj3"]
+[ext_resource type="Texture2D" uid="uid://dbq6q5sw73eu5" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/16x16/Room_Builder_free_16x16.png" id="2_3d6xc"]
+[ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0eb6"]
-texture = ExtResource("1_48w1d")
+texture = ExtResource("1_4ijj3")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1141,7 +1141,7 @@ texture = ExtResource("1_48w1d")
 13:27/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yubdn"]
-texture = ExtResource("2_q0eb6")
+texture = ExtResource("2_3d6xc")
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
@@ -1402,5 +1402,5 @@ layer_1/tile_data = PackedInt32Array(458768, 131072, 15, 524304, 131072, 16, 589
 layer_2/name = "Furniture 2"
 layer_2/tile_data = PackedInt32Array(524299, 720896, 75, 589835, 720896, 76, 524300, 720896, 75, 589836, 720896, 76, 1048586, 786432, 26, 1114122, 786432, 27, 1048587, 851968, 26, 1114123, 851968, 27)
 
-[node name="player" parent="." instance=ExtResource("2_0bbp8")]
+[node name="player" parent="." instance=ExtResource("3_quhyb")]
 position = Vector2(264, 218)

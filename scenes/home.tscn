@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://yoyh0trdyq5y"]
 
-[ext_resource type="Texture2D" uid="uid://cl52wlkp68x3i" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_d52sk"]
-[ext_resource type="Texture2D" uid="uid://dbq6q5sw73eu5" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/16x16/Room_Builder_free_16x16.png" id="2_nqr1n"]
+[ext_resource type="Texture2D" uid="uid://cl52wlkp68x3i" path="res://art/sprites/tilesets/packs/Interiors_free_16x16.png" id="1_d52sk"]
+[ext_resource type="Texture2D" uid="uid://dbq6q5sw73eu5" path="res://art/sprites/tilesets/packs/Room_Builder_free_16x16.png" id="2_nqr1n"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_nqr1n"]
 [ext_resource type="Texture2D" uid="uid://c2ths23u1xl1b" path="res://art/Modern_Exteriors_16x16/Modern tiles_Free/Interiors_free/32x32/Interiors_free_32x32.png" id="3_svoro"]
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1062pb2qdbpp"]
+
+[ext_resource type="Script" uid="uid://dvcqar1461ehx" path="res://scripts/fact_gui.gd" id="1_jpor3"]
+
+[node name="FactGui" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jpor3")
+
+[node name="Panel" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+title = "vvv"
+size = Vector2i(208, 108)
+
+[node name="FactContents" type="Label" parent="Panel"]
+custom_minimum_size = Vector2(200, 100)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 204.0
+offset_bottom = 104.0

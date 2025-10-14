@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6ssiye78bj3w"]
+[gd_scene load_steps=39 format=3 uid="uid://b6ssiye78bj3w"]
 
 [ext_resource type="Texture2D" uid="uid://cvhdhi8eukecb" path="res://art/Cute_Fantasy_Free/Outdoor decoration/Outdoor_Decor_Free.png" id="1_xo05s"]
 [ext_resource type="Texture2D" uid="uid://buuubo3y7cqyo" path="res://art/Cute_Fantasy_Free/Tiles/Beach_Tile.png" id="2_dss4m"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://c728rdsqhlpx0" path="res://art/Cute_Fantasy_Free/Tiles/Water_Tile.png" id="14_0nbtd"]
 [ext_resource type="Texture2D" uid="uid://bqktr4t36mb4k" path="res://art/Cute_Fantasy_Free/Outdoor decoration/Bridge_Wood.png" id="15_37qwj"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="16_dss4m"]
+[ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="18_lakw3"]
+[ext_resource type="Texture2D" uid="uid://bi1wny44amkja" path="res://icon.svg" id="19_pm21f"]
+[ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="20_2lf6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_navra"]
 texture = ExtResource("1_xo05s")
@@ -1616,3 +1619,17 @@ layer_2/tile_data = PackedInt32Array(262147, 13, 0, 589837, 13, 0, 393223, 13, 0
 
 [node name="player" parent="." instance=ExtResource("16_dss4m")]
 position = Vector2(35, 44)
+
+[node name="Facts" type="Node" parent="."]
+
+[node name="MaartenAddict" parent="Facts" node_paths=PackedStringArray("gui_target") instance=ExtResource("18_lakw3")]
+position = Vector2(228, 56)
+gui_target = NodePath("MaartenFactGui")
+
+[node name="MaartenFactGui" parent="Facts/MaartenAddict" instance=ExtResource("20_2lf6f")]
+anchors_preset = -1
+fact = "Maarten verslaafd is aan programmeren"
+
+[node name="Sprite2D" type="Sprite2D" parent="Facts/MaartenAddict"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("19_pm21f")

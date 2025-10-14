@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 
 const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
@@ -11,27 +12,30 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 
+func get_speed() -> float:
+	return (PLAYER_SPEED * 2 if Input.is_key_pressed(KEY_SHIFT) else PLAYER_SPEED)
+
 func handle_movement(delta: float):
 	if Input.is_action_pressed("ui_right"):
 		direction = Direction.Right
 		handle_movement_animation(direction)
-		velocity.x = PLAYER_SPEED
+		velocity.x = get_speed()
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_left"):
 		direction = Direction.Left
 		handle_movement_animation(direction)
-		velocity.x = -PLAYER_SPEED
+		velocity.x = -get_speed()
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_down"):
 		direction = Direction.Down
 		handle_movement_animation(direction)
 		velocity.x = 0
-		velocity.y = PLAYER_SPEED
+		velocity.y = get_speed()
 	elif Input.is_action_pressed("ui_up"):
 		direction = Direction.Up
 		handle_movement_animation(direction)
 		velocity.x = 0
-		velocity.y = -PLAYER_SPEED
+		velocity.y = -get_speed()
 	else:
 		handle_movement_animation(direction, false)
 		velocity = Vector2(0,0)

@@ -9,6 +9,9 @@ var direction = Direction.Down
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
+func player() :
+	pass
+	
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 

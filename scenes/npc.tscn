@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgkl45ckcmm32"]
+[gd_scene load_steps=14 format=3 uid="uid://bgkl45ckcmm32"]
 
 [ext_resource type="Script" uid="uid://be3bfhano1767" path="res://scripts/npc.gd" id="1_abqhh"]
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_nh2m4"]
 [ext_resource type="PackedScene" uid="uid://dmsvmkpapkfm6" path="res://dialogue/dialogue.tscn" id="3_rv78h"]
+[ext_resource type="PackedScene" uid="uid://r2k3cawjsyb3" path="res://scenes/npc_quest.tscn" id="4_7n8xq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abqhh"]
 atlas = ExtResource("1_nh2m4")
@@ -86,7 +87,10 @@ autostart = true
 
 [node name="Dialogue" parent="." instance=ExtResource("3_rv78h")]
 
+[node name="npc_quest" parent="." instance=ExtResource("4_7n8xq")]
+
 [connection signal="body_entered" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_entered"]
 [connection signal="body_exited" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="dialogue_finished" from="Dialogue" to="." method="_on_dialogue_dialogue_finished"]
+[connection signal="quest_menu_closed" from="npc_quest" to="." method="_on_npc_quest_quest_menu_closed"]

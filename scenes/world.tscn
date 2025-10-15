@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b6ssiye78bj3w"]
+[gd_scene load_steps=40 format=3 uid="uid://b6ssiye78bj3w"]
 
 [ext_resource type="Texture2D" uid="uid://cvhdhi8eukecb" path="res://art/Cute_Fantasy_Free/Outdoor decoration/Outdoor_Decor_Free.png" id="1_xo05s"]
 [ext_resource type="Texture2D" uid="uid://buuubo3y7cqyo" path="res://art/Cute_Fantasy_Free/Tiles/Beach_Tile.png" id="2_dss4m"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" path="res://scenes/gui_trigger.tscn" id="18_lakw3"]
 [ext_resource type="Texture2D" uid="uid://bi1wny44amkja" path="res://icon.svg" id="19_pm21f"]
 [ext_resource type="PackedScene" path="res://scenes/fact_gui.tscn" id="20_2lf6f"]
+[ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="21_7iits"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_navra"]
 texture = ExtResource("1_xo05s")
@@ -1633,3 +1634,6 @@ fact = "Maarten verslaafd is aan programmeren"
 [node name="Sprite2D" type="Sprite2D" parent="Facts/MaartenAddict"]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("19_pm21f")
+
+[node name="npc" parent="." instance=ExtResource("21_7iits")]
+position = Vector2(319, 87)

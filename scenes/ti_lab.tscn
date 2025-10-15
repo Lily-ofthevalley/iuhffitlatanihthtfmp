@@ -10545,5 +10545,14 @@ layer_6/tile_data = PackedInt32Array(1245191, 65542, 8, 1310727, 65542, 9, 12451
 [node name="player" parent="." instance=ExtResource("3_quhyb")]
 position = Vector2(168, 95)
 
+[node name="Camera2D" parent="player" index="2"]
+zoom = Vector2(9, 9)
+limit_left = 73
+limit_top = 47
+limit_right = 471
+limit_bottom = 277
+
 [node name="npc" parent="." instance=ExtResource("6_t1gnp")]
 position = Vector2(185, 148)
+
+[editable path="player"]

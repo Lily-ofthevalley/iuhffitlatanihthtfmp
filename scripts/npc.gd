@@ -13,6 +13,10 @@ func _process(delta: float) -> void:
 		print("chatting with npc")
 		$Dialogue.start()
 		is_chatting = true
+	if Input.is_action_just_pressed("quest"):
+		print("quest has been started")
+		$npc_quest.next_quest()
+		is_chatting = true
 
 func choose(array):
 	array.shuffle()
@@ -31,4 +35,8 @@ func _on_chat_detection_area_body_exited(body: Node2D) -> void:
 
 
 func _on_dialogue_dialogue_finished() -> void:
+	is_chatting = false
+
+
+func _on_npc_quest_quest_menu_closed() -> void:
 	is_chatting = false

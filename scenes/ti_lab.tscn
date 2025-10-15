@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://be7ctlfsfho0y"]
+[gd_scene load_steps=12 format=3 uid="uid://cvggd4f1o1ejd"]
 
-[ext_resource type="Texture2D" uid="uid://cl52wlkp68x3i" path="res://art/sprites/tilesets/packs/Interiors_free_16x16.png" id="1_4ijj3"]
-[ext_resource type="Texture2D" uid="uid://dbq6q5sw73eu5" path="res://art/sprites/tilesets/packs/Room_Builder_free_16x16.png" id="2_3d6xc"]
-[ext_resource type="Texture2D" uid="uid://bh3wo5v71uo" path="res://art/sprites/tilesets/packs/Interiors_16x16.png" id="3_3d6xc"]
+[ext_resource type="Texture2D" uid="uid://botpkklu1nnfi" path="res://art/sprites/tilesets/packs/Interiors_free_16x16.png" id="1_4ijj3"]
+[ext_resource type="Texture2D" uid="uid://b3eeentyfhe1f" path="res://art/sprites/tilesets/packs/Room_Builder_free_16x16.png" id="2_3d6xc"]
+[ext_resource type="Texture2D" uid="uid://dx0a4btog25n8" path="res://art/sprites/tilesets/packs/Interiors_16x16.png" id="3_3d6xc"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
-[ext_resource type="Texture2D" uid="uid://d4kdrspo7vrre" path="res://art/sprites/tilesets/packs/Interiors2_16x16.png" id="4_quhyb"]
+[ext_resource type="Texture2D" uid="uid://iu3deia34cxt" path="res://art/sprites/tilesets/packs/Interiors2_16x16.png" id="4_quhyb"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0eb6"]
@@ -19728,4 +19728,4 @@ layer_2/tile_data = PackedInt32Array(524299, 720896, 75, 589835, 720896, 76, 524
 position = Vector2(264, 218)
 
 [node name="npc" parent="." instance=ExtResource("6_t1gnp")]
-position = Vector2(365, 313)
+position = Vector2(185, 148)

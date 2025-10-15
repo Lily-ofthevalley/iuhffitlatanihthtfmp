@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dho42wacfvrba"]
+[gd_scene load_steps=4 format=3 uid="uid://dcf8iuohsogbk"]
 
 [ext_resource type="Script" uid="uid://bf7dhirmyqpwl" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://d18mi5urbw3l1" path="res://art/Cute_Fantasy_Free/Outdoor decoration/House.png" id="1_l6cm7"]

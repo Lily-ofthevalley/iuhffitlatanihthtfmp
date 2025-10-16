@@ -2,11 +2,8 @@ extends CanvasLayer
 
 signal quest_menu_closed
 
-@export_file("*.json") var d_file
-
 var dialogue = []
 var current_dialogue_id = 0
-var d_active = false
 
 var quest1_active = false
 var quest1_completed = false
@@ -25,13 +22,13 @@ var quest3_dialogue_completed = false
 
 var stick = 0
 
-func _ready() -> void:
+func _ready() -> void: #Sets all ui's invisible at the start
 	$quest_dialogue.visible = false
 	$quest1_ui.visible = false
 	$quest2_ui.visible = false
 	$quest3_ui.visible = false
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: #Checks if the quests have been completed
 	if quest1_active:
 		if stick == 0:
 			quest1_active = false
@@ -51,7 +48,7 @@ func _process(delta: float) -> void:
 			quest3_dialogue_active = false
 			print("quest 3 compleet: ", quest3_completed)
 
-func next_quest():
+func next_quest(): #Checks which quest you are on
 	if !quest1_completed:
 		quest1_chat()
 	elif !quest2_completed:
@@ -59,11 +56,9 @@ func next_quest():
 	elif !quest3_completed:
 		quest3_chat()
 	else:
-		$no_quest.visible = true
-		print("kaasstengel")
-		$no_quest.visible = false
+		print("No more quests available")
 			
-func load_dialogue():
+func load_dialogue(): #Loads the correct dialogue in
 	var file
 	
 	if quest1_dialogue_active:
@@ -76,16 +71,13 @@ func load_dialogue():
 	var content = JSON.parse_string(file.get_as_text())
 	return content
 	
-func _input(event: InputEvent) -> void:
-	if !d_active:
-		return
+func _input(event: InputEvent) -> void: #Listents for input of enter key to go to the next text
 	if event.is_action_pressed("ui_accept"):
 		next_script()
 		
-func next_script():
+func next_script(): #Shows next text or closes dialogue
 	current_dialogue_id += 1
 	if current_dialogue_id >= len(dialogue):
-		d_active = false
 		if quest1_dialogue_active:
 			$quest1_ui.visible = true
 		elif quest2_dialogue_active:
@@ -99,11 +91,9 @@ func next_script():
 	$quest_dialogue/Panel/Name.text = dialogue[current_dialogue_id]["name"]
 	$quest_dialogue/Panel/Text.text = dialogue[current_dialogue_id]["text"]
 
+# V Quest Dialogue functions V
 func quest1_chat():
 	quest1_dialogue_active = true
-	if d_active:
-		return
-	d_active = true
 	dialogue = load_dialogue()
 	current_dialogue_id = -1
 	$quest_dialogue.visible = true
@@ -111,9 +101,6 @@ func quest1_chat():
 	
 func quest2_chat():
 	quest2_dialogue_active = true
-	if d_active:
-		return
-	d_active = true
 	$quest_dialogue.visible = true
 	dialogue = load_dialogue()
 	current_dialogue_id = -1
@@ -121,15 +108,12 @@ func quest2_chat():
 	
 func quest3_chat():
 	quest3_dialogue_active = true
-	if d_active:
-		return
-	d_active = true
 	$quest_dialogue.visible = true
 	dialogue = load_dialogue()
 	current_dialogue_id = -1
 	next_script()
 
-
+# V Quest accept and deny buttons V
 func _on_yes_button_1_pressed2() -> void:
 	$quest1_ui.visible = false
 	quest1_active = true

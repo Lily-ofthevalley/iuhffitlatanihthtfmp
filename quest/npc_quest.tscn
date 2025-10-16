@@ -19,6 +19,7 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
 [node name="QuestBox" type="CanvasLayer"]
+layer = 2048
 script = ExtResource("1_2a833")
 
 [node name="quest_dialogue" type="MarginContainer" parent="."]
@@ -47,76 +48,6 @@ offset_bottom = 47.0
 text = "Name"
 
 [node name="Text" type="RichTextLabel" parent="quest_dialogue/Panel"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 49.0
-offset_right = 1096.0
-offset_bottom = 130.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-text = "Text"
-
-[node name="finished_quest" type="MarginContainer" parent="."]
-visible = false
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -192.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="Panel" type="Panel" parent="finished_quest"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lg41g")
-
-[node name="Name" type="RichTextLabel" parent="finished_quest/Panel"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 17.0
-offset_right = 102.0
-offset_bottom = 47.0
-text = "Name"
-
-[node name="Text" type="RichTextLabel" parent="finished_quest/Panel"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 49.0
-offset_right = 1096.0
-offset_bottom = 130.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-text = "Text"
-
-[node name="no_quest" type="MarginContainer" parent="."]
-visible = false
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -192.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="Panel" type="Panel" parent="no_quest"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lg41g")
-
-[node name="Name" type="RichTextLabel" parent="no_quest/Panel"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 17.0
-offset_right = 102.0
-offset_bottom = 47.0
-text = "Name"
-
-[node name="Text" type="RichTextLabel" parent="no_quest/Panel"]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 49.0

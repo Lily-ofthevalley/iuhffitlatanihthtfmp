@@ -2,8 +2,6 @@ extends CanvasLayer
 
 signal dialogue_finished
 
-@export_file("*.json") var d_file
-
 var dialogue = []
 var current_dialogue_id = 0
 var d_active = false
@@ -12,8 +10,6 @@ func _ready() -> void:
 	$MarginContainer.visible = false
 	
 func start():
-	if d_active:
-		return
 	d_active = true
 	$MarginContainer.visible = true
 	dialogue = load_dialogue()

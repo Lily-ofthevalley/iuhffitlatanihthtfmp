@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=4 uid="uid://vbn7nguvekub"]
+[gd_scene load_steps=6 format=4 uid="uid://vbn7nguvekub"]
 
+[ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="3_3w3tr"]
+[ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="4_1k2v8"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="6_txc3n"]
 [ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="6_yjeik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txc3n"]
+size = Vector2(13.016846, 9.215088)
 
 [node name="Node2D" type="Node2D"]
 
@@ -53,3 +58,31 @@ tile_set = ExtResource("6_yjeik")
 
 [node name="player" parent="." instance=ExtResource("6_txc3n")]
 position = Vector2(504, 515)
+
+[node name="FunFacts" type="Node" parent="."]
+
+[node name="taart" parent="FunFacts" node_paths=PackedStringArray("gui_target", "trigger_area") instance=ExtResource("3_3w3tr")]
+position = Vector2(278, 93)
+gui_target = NodePath("FactGui")
+trigger_area = NodePath("FactTrigger")
+
+[node name="FactGui" parent="FunFacts/taart" instance=ExtResource("4_1k2v8")]
+fact = "Er iemand jarig is"
+
+[node name="FactTrigger" type="CollisionShape2D" parent="FunFacts/taart"]
+position = Vector2(307.70148, 429.72876)
+rotation = -0.6614798
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_txc3n")
+
+[node name="koffie" parent="FunFacts" node_paths=PackedStringArray("gui_target", "trigger_area") instance=ExtResource("3_3w3tr")]
+position = Vector2(278, 93)
+gui_target = NodePath("FactGui")
+trigger_area = NodePath("FactTrigger")
+
+[node name="FactGui" parent="FunFacts/koffie" instance=ExtResource("4_1k2v8")]
+fact = "De koffie hier vies is"
+
+[node name="FactTrigger" type="CollisionShape2D" parent="FunFacts/koffie"]
+position = Vector2(139, 440.1875)
+shape = SubResource("RectangleShape2D_txc3n")

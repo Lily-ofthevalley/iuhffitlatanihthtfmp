@@ -10553,6 +10553,6 @@ limit_right = 471
 limit_bottom = 277
 
 [node name="npc" parent="." instance=ExtResource("6_t1gnp")]
-position = Vector2(185, 148)
+position = Vector2(421, 99)
 
 [editable path="player"]

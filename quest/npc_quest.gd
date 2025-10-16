@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 signal quest_menu_closed
 
@@ -50,6 +50,18 @@ func _process(delta: float) -> void:
 			quest3_completed = true
 			quest3_dialogue_active = false
 			print("quest 3 compleet: ", quest3_completed)
+
+func next_quest():
+	if !quest1_completed:
+		quest1_chat()
+	elif !quest2_completed:
+		quest2_chat()
+	elif !quest3_completed:
+		quest3_chat()
+	else:
+		$no_quest.visible = true
+		print("kaasstengel")
+		$no_quest.visible = false
 			
 func load_dialogue():
 	var file
@@ -84,17 +96,17 @@ func next_script():
 		return
 		
 	
-	$quest_dialogue/Name.text = dialogue[current_dialogue_id]["name"]
-	$quest_dialogue/Text.text = dialogue[current_dialogue_id]["text"]
+	$quest_dialogue/Panel/Name.text = dialogue[current_dialogue_id]["name"]
+	$quest_dialogue/Panel/Text.text = dialogue[current_dialogue_id]["text"]
 
 func quest1_chat():
 	quest1_dialogue_active = true
 	if d_active:
 		return
 	d_active = true
-	$quest_dialogue.visible = true
 	dialogue = load_dialogue()
 	current_dialogue_id = -1
+	$quest_dialogue.visible = true
 	next_script()
 	
 func quest2_chat():
@@ -116,60 +128,42 @@ func quest3_chat():
 	dialogue = load_dialogue()
 	current_dialogue_id = -1
 	next_script()
-	
-func next_quest():
-	if !quest1_completed:
-		quest1_chat()
-	elif !quest2_completed:
-		quest2_chat()
-	elif !quest3_completed:
-		quest3_chat()
-	else:
-		$no_quest.visible = true
-		print("kaasstengel")
-		$no_quest.visible = false
 
 
-func _on_yes_button_1_pressed() -> void:
+func _on_yes_button_1_pressed2() -> void:
 	$quest1_ui.visible = false
 	quest1_active = true
 	print("Quest 1:", quest1_active)
-	#quest1_active = false
-	#quest1_completed = true
 	emit_signal("quest_menu_closed")
 
 
-func _on_no_button_1_pressed() -> void:
+func _on_no_button_1_pressed2() -> void:
 	$quest1_ui.visible = false
 	quest1_active = false
 	emit_signal("quest_menu_closed")
 
 
-func _on_yes_button_2_pressed() -> void:
+func _on_yes_button_2_pressed2() -> void:
 	$quest2_ui.visible = false
 	quest2_active = true
 	print("Quest 2:", quest2_active)
-	#quest2_active = false
-	#quest2_completed = true
 	emit_signal("quest_menu_closed")
 
 
-func _on_no_button_2_pressed() -> void:
+func _on_no_button_2_pressed2() -> void:
 	$quest2_ui.visible = false
 	quest2_active = false
 	emit_signal("quest_menu_closed")
 
 
-func _on_yes_button_3_pressed() -> void:
+func _on_yes_button_3_pressed2() -> void:
 	$quest3_ui.visible = false
 	quest3_active = true
 	print("Quest 3:", quest3_active)
-	#quest3_active = false
-	#quest3_completed = true
 	emit_signal("quest_menu_closed")
 
 
-func _on_no_button_3_pressed() -> void:
+func _on_no_button_3_pressed2() -> void:
 	$quest3_ui.visible = false
 	quest3_active = false
 	emit_signal("quest_menu_closed")

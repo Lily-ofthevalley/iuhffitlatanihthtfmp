@@ -11,11 +11,11 @@ func _ready():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("chat"):
 		print("chatting with npc")
-		$Dialogue.start()
+		$TextBox.start()
 		is_chatting = true
 	if Input.is_action_just_pressed("quest"):
 		print("quest has been started")
-		$npc_quest.next_quest()
+		$QuestBox.next_quest()
 		is_chatting = true
 
 func choose(array):

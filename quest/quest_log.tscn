@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://obq2ig2345ph"]
+
+[ext_resource type="Script" uid="uid://bkqq6rdtyvqfb" path="res://quest/quest_log.gd" id="1_7ntsi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecpay"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ntsi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="QuestLog" type="CanvasLayer"]
+script = ExtResource("1_7ntsi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ecpay")
+
+[node name="Titel" type="RichTextLabel" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 207.0
+offset_bottom = 40.0
+theme_override_font_sizes/normal_font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ntsi")
+text = "Quest"
+fit_content = true
+scroll_active = false
+tab_size = 13
+horizontal_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 50.0
+offset_right = 196.0
+offset_bottom = 134.0
+text = "Text"
+horizontal_alignment = 1

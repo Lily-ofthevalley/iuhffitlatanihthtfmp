@@ -434,7 +434,6 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-2, 20)
 zoom = Vector2(4, 4)
 limit_left = 32
 limit_top = 32

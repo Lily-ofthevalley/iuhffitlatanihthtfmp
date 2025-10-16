@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvggd4f1o1ejd"]
+[gd_scene load_steps=4 format=3 uid="uid://cvggd4f1o1ejd"]
 
 [ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="1_4ijj3"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
-[ext_resource type="PackedScene" uid="uid://dt7f4o77fujby" path="res://scenes/bg_music.tscn" id="4_3d6xc"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
 
 [node name="Node2D" type="Node2D"]
@@ -38,8 +37,5 @@ limit_bottom = 277
 
 [node name="npc" parent="." instance=ExtResource("6_t1gnp")]
 position = Vector2(421, 99)
-
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("4_3d6xc")]
-stream = null
 
 [editable path="player"]

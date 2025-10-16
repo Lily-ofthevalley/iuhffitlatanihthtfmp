@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgkl45ckcmm32"]
+[gd_scene load_steps=14 format=3 uid="uid://bgkl45ckcmm32"]
 
 [ext_resource type="Script" uid="uid://be3bfhano1767" path="res://scripts/npc.gd" id="1_abqhh"]
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_nh2m4"]
-[ext_resource type="PackedScene" uid="uid://r2k3cawjsyb3" path="res://scenes/npc_quest.tscn" id="4_7n8xq"]
 [ext_resource type="PackedScene" uid="uid://cqlr1en3jisyg" path="res://dialogue/dialogue.tscn" id="5_4wlns"]
 [ext_resource type="PackedScene" uid="uid://dwh2n5kd85ynr" path="res://quest/npc_quest.tscn" id="5_tl2vt"]
 
@@ -86,12 +85,6 @@ shape = SubResource("CircleShape2D_v4e37")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Dialogue" parent="." instance=ExtResource("5_4wlns")]
-visible = false
-
-[node name="npc_quest" parent="." instance=ExtResource("4_7n8xq")]
-visible = false
-
 [node name="TextBox" parent="." instance=ExtResource("5_4wlns")]
 
 [node name="QuestBox" parent="." instance=ExtResource("5_tl2vt")]
@@ -99,4 +92,3 @@ visible = false
 [connection signal="body_entered" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_entered"]
 [connection signal="body_exited" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="dialogue_finished" from="Dialogue" to="." method="_on_dialogue_dialogue_finished"]

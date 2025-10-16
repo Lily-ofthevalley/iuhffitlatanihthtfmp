@@ -4,7 +4,7 @@ class_name Player
 
 const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
-var direction = Direction.Up
+var direction = Direction.Right
 
 func _ready():
 	$AnimatedSprite2D.play("death")

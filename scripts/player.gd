@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var inv: Inv
 const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
 var direction = Direction.Down

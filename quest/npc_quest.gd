@@ -5,17 +5,14 @@ signal quest_menu_closed
 var dialogue = []
 var current_dialogue_id = 0
 
-var quest1_active = false
 var quest1_completed = false
 var quest1_dialogue_active = false
 var quest1_dialogue_completed = false
 
-var quest2_active = false
 var quest2_completed = false
 var quest2_dialogue_active = false
 var quest2_dialogue_completed = false
 
-var quest3_active = false
 var quest3_completed = false
 var quest3_dialogue_active = false
 var quest3_dialogue_completed = false
@@ -29,21 +26,24 @@ func _ready() -> void: #Sets all ui's invisible at the start
 	$quest3_ui.visible = false
 
 func _process(delta: float) -> void: #Checks if the quests have been completed
-	if quest1_active:
+	if QuestManager.quest1_active:
 		if stick == 0:
-			quest1_active = false
+			QuestManager.quest1_active = false
+			emit_signal("quest1_activity_status", false)
 			quest1_completed = true
 			quest1_dialogue_active = false
 			print("quest 1 compleet: ", quest1_completed)
-	if quest2_active:
+	if QuestManager.quest2_active:
 		if stick == 0:
-			quest2_active = false
+			QuestManager.quest2_active = false
+			emit_signal("quest2_activity_status", false)
 			quest2_completed = true
 			quest2_dialogue_active = false
 			print("quest 2 compleet: ", quest2_completed)
-	if quest3_active:
+	if QuestManager.quest3_active:
 		if stick == 0:
-			quest3_active = false
+			QuestManager.quest3_active = false
+			emit_signal("quest3_activity_status", false)
 			quest3_completed = true
 			quest3_dialogue_active = false
 			print("quest 3 compleet: ", quest3_completed)
@@ -116,38 +116,32 @@ func quest3_chat():
 # V Quest accept and deny buttons V
 func _on_yes_button_1_pressed2() -> void:
 	$quest1_ui.visible = false
-	quest1_active = true
-	print("Quest 1:", quest1_active)
-	emit_signal("quest_menu_closed")
+	QuestManager.quest1_active = true
+	print("Quest 1:", QuestManager.quest1_active)
 
 
 func _on_no_button_1_pressed2() -> void:
 	$quest1_ui.visible = false
-	quest1_active = false
-	emit_signal("quest_menu_closed")
+	QuestManager.quest1_active = false
 
 
 func _on_yes_button_2_pressed2() -> void:
 	$quest2_ui.visible = false
-	quest2_active = true
-	print("Quest 2:", quest2_active)
-	emit_signal("quest_menu_closed")
+	QuestManager.quest2_active = true
+	print("Quest 2:", QuestManager.quest2_active)
 
 
 func _on_no_button_2_pressed2() -> void:
 	$quest2_ui.visible = false
-	quest2_active = false
-	emit_signal("quest_menu_closed")
+	QuestManager.quest2_active = false
 
 
 func _on_yes_button_3_pressed2() -> void:
 	$quest3_ui.visible = false
-	quest3_active = true
-	print("Quest 3:", quest3_active)
-	emit_signal("quest_menu_closed")
+	QuestManager.quest3_active = true
+	print("Quest 3:", QuestManager.quest3_active)
 
 
 func _on_no_button_3_pressed2() -> void:
 	$quest3_ui.visible = false
-	quest3_active = false
-	emit_signal("quest_menu_closed")
+	QuestManager.quest3_active = false

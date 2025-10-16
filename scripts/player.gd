@@ -7,6 +7,9 @@ const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
 var direction = Direction.Down
 
+func player():
+	pass
+
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
@@ -71,3 +74,7 @@ func handle_movement_animation(direction: Direction, moving: bool = true):
 				anim.play("back_walk")
 			else:
 				anim.play("back_idle")
+
+func collect(item):
+	inv.insert(item)
+	

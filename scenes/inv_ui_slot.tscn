@@ -13,10 +13,22 @@ offset_right = -1136.0
 offset_bottom = -632.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(8, 8)
+script = ExtResource("2_n7f1c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 8)
 texture = ExtResource("1_h1oto")
 
-[node name="item_display" type="Sprite2D" parent="."]
-script = ExtResource("2_n7f1c")
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+pivot_offset = Vector2(8, 8)
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+offset = Vector2(0, -20)

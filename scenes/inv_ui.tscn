@@ -10,12 +10,11 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -21.0
-offset_top = 1.0
-offset_right = -1110.0
-offset_bottom = -608.0
+offset_right = -1089.0
+offset_bottom = -609.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(32, 20)
 script = ExtResource("1_wefod")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://c13025l3bph2n"]
+[gd_scene load_steps=58 format=3 uid="uid://c13025l3bph2n"]
 
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b5586eh2m4v6i" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Resource" uid="uid://c0v6h1rb17rgs" path="res://inventory/playerInv.tres" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://dcbej3duvitcf" path="res://scenes/inv_ui.tscn" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
@@ -420,6 +421,7 @@ radius = 5.0
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_g2els")
+inv = ExtResource("2_dqkch")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -19)
@@ -443,8 +445,8 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_vertical_enabled = true
 
-[node name="Inv_UI" parent="Camera2D" instance=ExtResource("3_qhqgy")]
-offset_left = -28.0
-offset_top = -39.0
-offset_right = 35.0
-offset_bottom = 0.0
+[node name="Inv_UI" parent="." instance=ExtResource("3_qhqgy")]
+offset_left = -30.0
+offset_top = -19.0
+offset_right = 33.0
+offset_bottom = 20.0

@@ -1,10 +1,33 @@
-[gd_resource type="Resource" script_class="Inv" load_steps=4 format=3 uid="uid://c0v6h1rb17rgs"]
+[gd_resource type="Resource" script_class="Inv" load_steps=9 format=3 uid="uid://c0v6h1rb17rgs"]
 
-[ext_resource type="Script" uid="uid://dy57c3y0aifxq" path="res://scripts/inventory_items.gd" id="1_236rr"]
-[ext_resource type="Resource" uid="uid://cdtlmntyodxi3" path="res://inventory/items/tree.tres" id="2_0804x"]
-[ext_resource type="Script" uid="uid://4ng45m8waddc" path="res://inventory.gd" id="3_qupun"]
+[ext_resource type="Script" uid="uid://4ng45m8waddc" path="res://scripts/inventory.gd" id="1_4efiy"]
+[ext_resource type="Script" uid="uid://dovjfq2dgnp4k" path="res://scripts/inv_slot.gd" id="2_4efiy"]
+
+[sub_resource type="Resource" id="Resource_236rr"]
+script = ExtResource("2_4efiy")
+metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
+
+[sub_resource type="Resource" id="Resource_0804x"]
+script = ExtResource("2_4efiy")
+metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
+
+[sub_resource type="Resource" id="Resource_qupun"]
+script = ExtResource("2_4efiy")
+metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
+
+[sub_resource type="Resource" id="Resource_id8d1"]
+script = ExtResource("2_4efiy")
+metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
+
+[sub_resource type="Resource" id="Resource_uinmr"]
+script = ExtResource("2_4efiy")
+metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
+
+[sub_resource type="Resource" id="Resource_rerqd"]
+script = ExtResource("2_4efiy")
+metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
 
 [resource]
-script = ExtResource("3_qupun")
-items = Array[ExtResource("1_236rr")]([ExtResource("2_0804x"), null, null, ExtResource("2_0804x"), null, null])
+script = ExtResource("1_4efiy")
+slots = Array[ExtResource("2_4efiy")]([SubResource("Resource_236rr"), SubResource("Resource_0804x"), SubResource("Resource_qupun"), SubResource("Resource_id8d1"), SubResource("Resource_uinmr"), SubResource("Resource_rerqd")])
 metadata/_custom_type_script = "uid://4ng45m8waddc"

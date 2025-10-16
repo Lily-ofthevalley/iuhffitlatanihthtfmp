@@ -19,6 +19,7 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
 [node name="QuestBox" type="CanvasLayer"]
+layer = 2048
 script = ExtResource("1_2a833")
 
 [node name="quest_dialogue" type="MarginContainer" parent="."]

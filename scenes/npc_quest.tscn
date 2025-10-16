@@ -1,0 +1,222 @@
+[gd_scene load_steps=2 format=3 uid="uid://r2k3cawjsyb3"]
+
+[ext_resource type="Texture2D" uid="uid://cic4o1srmjsow" path="res://art/Cute_Fantasy_Free/Tiles/Path_Middle.png" id="2_6ple6"]
+
+[node name="npc_quest" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="no_quest" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -40.0
+offset_top = -55.0
+offset_right = 41.0
+offset_bottom = -13.0
+texture = ExtResource("2_6ple6")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Name" type="RichTextLabel" parent="no_quest"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 62.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+text = "Name:"
+
+[node name="Text" type="RichTextLabel" parent="no_quest"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 176.99998
+offset_bottom = 82.5
+scale = Vector2(0.4, 0.4)
+text = "I don't have a quest for you please come back later"
+
+[node name="finsihed_quest" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -40.0
+offset_top = -55.0
+offset_right = 41.0
+offset_bottom = -13.0
+texture = ExtResource("2_6ple6")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Name" type="RichTextLabel" parent="finsihed_quest"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 62.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+text = "Jan"
+
+[node name="Text" type="RichTextLabel" parent="finsihed_quest"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 176.99998
+offset_bottom = 82.5
+scale = Vector2(0.4, 0.4)
+text = "Congrats you finished my quest"
+
+[node name="quest1_ui" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -55.0
+offset_right = 41.0
+offset_bottom = -13.0
+texture = ExtResource("2_6ple6")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Text" type="RichTextLabel" parent="quest1_ui"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 176.99998
+offset_bottom = 82.5
+scale = Vector2(0.4, 0.4)
+text = "Steel de sensoren uit de kluis"
+
+[node name="yesButton1" type="Button" parent="quest1_ui"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 27.0
+offset_right = 52.0
+offset_bottom = 58.0
+scale = Vector2(0.4, 0.4)
+text = "Yes"
+
+[node name="noButton1" type="Button" parent="quest1_ui"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 27.0
+offset_right = 82.999985
+offset_bottom = 58.0
+scale = Vector2(0.4, 0.4)
+text = "No"
+
+[node name="quest2_ui" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -55.0
+offset_right = 41.0
+offset_bottom = -13.0
+texture = ExtResource("2_6ple6")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Text" type="RichTextLabel" parent="quest2_ui"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 176.99998
+offset_bottom = 82.5
+scale = Vector2(0.4, 0.4)
+text = "Vindt een lichaam voor je robot."
+
+[node name="yesButton2" type="Button" parent="quest2_ui"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 27.0
+offset_right = 52.0
+offset_bottom = 58.0
+scale = Vector2(0.4, 0.4)
+text = "Yes"
+
+[node name="noButton2" type="Button" parent="quest2_ui"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 27.0
+offset_right = 82.999985
+offset_bottom = 58.0
+scale = Vector2(0.4, 0.4)
+text = "No"
+
+[node name="quest3_ui" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -55.0
+offset_right = 41.0
+offset_bottom = -13.0
+texture = ExtResource("2_6ple6")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Text" type="RichTextLabel" parent="quest3_ui"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 176.99998
+offset_bottom = 82.5
+scale = Vector2(0.4, 0.4)
+text = "Pak het moederboord"
+
+[node name="yesButton3" type="Button" parent="quest3_ui"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 27.0
+offset_right = 52.0
+offset_bottom = 58.0
+scale = Vector2(0.4, 0.4)
+text = "Yes"
+
+[node name="noButton3" type="Button" parent="quest3_ui"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 27.0
+offset_right = 82.999985
+offset_bottom = 58.0
+scale = Vector2(0.4, 0.4)
+text = "No"
+
+[node name="quest_dialogue" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -55.0
+offset_right = 41.0
+offset_bottom = -13.0
+texture = ExtResource("2_6ple6")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Name" type="RichTextLabel" parent="quest_dialogue"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 62.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+text = "Name:"
+
+[node name="Text" type="RichTextLabel" parent="quest_dialogue"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 176.99998
+offset_bottom = 82.5
+scale = Vector2(0.4, 0.4)
+text = "Chatting...."
+
+[connection signal="pressed" from="quest1_ui/yesButton1" to="." method="_on_yes_button_1_pressed"]
+[connection signal="pressed" from="quest1_ui/noButton1" to="." method="_on_no_button_1_pressed"]
+[connection signal="pressed" from="quest2_ui/yesButton2" to="." method="_on_yes_button_2_pressed"]
+[connection signal="pressed" from="quest2_ui/noButton2" to="." method="_on_no_button_2_pressed"]
+[connection signal="pressed" from="quest3_ui/yesButton3" to="." method="_on_yes_button_3_pressed"]
+[connection signal="pressed" from="quest3_ui/noButton3" to="." method="_on_no_button_3_pressed"]

@@ -22,6 +22,7 @@ buses/default_bus_layout=""
 [autoload]
 
 BgMusic="*res://scenes/bg_music.tscn"
+QuestManager="*res://quest/QuestManager.gd"
 
 [input]
 

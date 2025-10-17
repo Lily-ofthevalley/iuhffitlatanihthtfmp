@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgo640uvorwcs"]
+
+[ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="1_2lrlt"]
+[ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="2_t6c3w"]
+
+[node name="Outdoor" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_2lrlt")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_t6c3w")

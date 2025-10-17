@@ -6,7 +6,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Subfloor" type="TileMapLayer" parent="."]
-position = Vector2(-19, -24)
+position = Vector2(-19, -22)
 tile_map_data = PackedByteArray("AAAZABoAAQANAAMAAAATAAQAAQALAAIAAAAkABoAAwAFAMkBAGAkABsAAwAEAMkBAGAmABsAAwAGAMkBAFAmABoAAwAFAMkBAFAlABgAAwABAM4BAAAmABgAAwACAM8BAAAkABkAAwAFAMkBAGAmABkAAwAFAMkBAFA=")
 tile_set = ExtResource("6_yjeik")
 
@@ -33,17 +33,17 @@ tile_set = ExtResource("6_yjeik")
 
 [node name="Postfloor4" type="TileMapLayer" parent="."]
 position = Vector2(0, 6)
-tile_map_data = PackedByteArray("AAAjACIAAwAOACMCAAAYAB8AAwAIAAgBAAAZAB8AAwAJAAgBAAAjAB4AAwAAAE4AAAAjAB8AAwAAAE8AAAAkAB4AAwABAE4AAAAkAB8AAwABAE8AAAA=")
+tile_map_data = PackedByteArray("AAAjACIAAwAOACQCAAAYAB8AAwAIAAgBAAAZAB8AAwAJAAgBAAAjAB4AAwANACICAAA=")
 tile_set = ExtResource("6_yjeik")
 
 [node name="Zitzakken1" type="TileMapLayer" parent="."]
 position = Vector2(2, 7)
-tile_map_data = PackedByteArray("AAAmAB0AAwAIAIUBAAAnAB0AAwAJAIUBAAAoAB0AAwAIAIUBAAApAB0AAwAJAIUBAAAmABwAAwAIAIQBAAAnABwAAwAJAIQBAAAoABwAAwAIAIQBAAApABwAAwAJAIQBAAA=")
+tile_map_data = PackedByteArray("AAAoAB0AAwAIAIUBAAApAB0AAwAJAIUBAAAoABwAAwAIAIQBAAApABwAAwAJAIQBAAAmABwAAwAGAIYBAAAmAB0AAwAGAIcBAAAnABwAAwAHAIYBAAAnAB0AAwAHAIcBAAA=")
 tile_set = ExtResource("6_yjeik")
 
 [node name="Zitzakken2" type="TileMapLayer" parent="."]
 position = Vector2(3, 10)
-tile_map_data = PackedByteArray("AAAnABsAAwAIAIQBAAAnABwAAwAIAIUBAAAoABsAAwAJAIQBAAAoABwAAwAJAIUBAAA=")
+tile_map_data = PackedByteArray("AAAnABsAAwAGAIQBAAAnABwAAwAGAIUBAAAoABsAAwAHAIQBAAAoABwAAwAHAIUBAAA=")
 tile_set = ExtResource("6_yjeik")
 
 [node name="Zitzakken3" type="TileMapLayer" parent="."]

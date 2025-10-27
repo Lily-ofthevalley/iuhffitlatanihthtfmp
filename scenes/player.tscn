@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b5586eh2m4v6i" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://c0v6h1rb17rgs" path="res://inventory/playerInv.tres" id="2_dqkch"]
-[ext_resource type="PackedScene" uid="uid://dcbej3duvitcf" path="res://scenes/inv_ui.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://wt24l3oi5q1w" path="res://inventory_layer.tscn" id="3_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -423,6 +423,8 @@ y_sort_enabled = true
 script = ExtResource("1_g2els")
 inv = ExtResource("2_dqkch")
 
+[node name="CanvasLayer" parent="." instance=ExtResource("3_qlg0r")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -19)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
@@ -444,9 +446,3 @@ limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_vertical_enabled = true
-
-[node name="Inv_UI" parent="." instance=ExtResource("3_qhqgy")]
-offset_left = -30.0
-offset_top = -19.0
-offset_right = 33.0
-offset_bottom = 20.0

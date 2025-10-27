@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var is_open = false
 @onready var inv: Inv = preload("res://inventory/playerInv.tres")

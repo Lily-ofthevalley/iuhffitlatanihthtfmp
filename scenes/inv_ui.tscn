@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcbej3duvitcf"]
-
-[ext_resource type="Script" uid="uid://bw7a25u144xvb" path="res://scripts/inv_ui.gd" id="1_wefod"]
-[ext_resource type="Texture2D" uid="uid://cywipwe8mfw4q" path="res://art/Cute_Fantasy_Free/Tiles/FarmLand_Tile.png" id="2_tmo6b"]
-[ext_resource type="PackedScene" uid="uid://cnnthk58xkrru" path="res://scenes/inv_ui_slot.tscn" id="3_t08ue"]
+[gd_scene format=3 uid="uid://dcbej3duvitcf"]
 
 [node name="Inv_UI" type="Control"]
+visible = false
 custom_minimum_size = Vector2(63, 39)
 layout_mode = 3
 anchors_preset = 15
@@ -15,47 +12,3 @@ offset_bottom = -609.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(32, 20)
-script = ExtResource("1_wefod")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-layout_mode = 0
-offset_right = 63.0
-offset_bottom = 39.0
-texture = ExtResource("2_tmo6b")
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
-
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -18.0
-offset_right = 28.0
-offset_bottom = 18.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 3
-
-[node name="inv_UI_slot" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t08ue")]
-layout_mode = 2
-
-[node name="inv_UI_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t08ue")]
-layout_mode = 2
-
-[node name="inv_UI_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t08ue")]
-layout_mode = 2
-
-[node name="inv_UI_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t08ue")]
-layout_mode = 2
-
-[node name="inv_UI_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t08ue")]
-layout_mode = 2
-
-[node name="inv_UI_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("3_t08ue")]
-layout_mode = 2

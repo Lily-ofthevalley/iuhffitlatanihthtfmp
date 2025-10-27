@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Inv" load_steps=9 format=3 uid="uid://c0v6h1rb17rgs"]
 
-[ext_resource type="Script" uid="uid://4ng45m8waddc" path="res://scripts/inventory.gd" id="1_4efiy"]
-[ext_resource type="Script" uid="uid://dovjfq2dgnp4k" path="res://scripts/inv_slot.gd" id="2_4efiy"]
+[ext_resource type="Script" path="res://scripts/inventory.gd" id="1_4efiy"]
+[ext_resource type="Script" path="res://scripts/inv_slot.gd" id="2_4efiy"]
 
 [sub_resource type="Resource" id="Resource_236rr"]
 script = ExtResource("2_4efiy")
@@ -30,4 +30,3 @@ metadata/_custom_type_script = "uid://dovjfq2dgnp4k"
 [resource]
 script = ExtResource("1_4efiy")
 slots = Array[ExtResource("2_4efiy")]([SubResource("Resource_236rr"), SubResource("Resource_0804x"), SubResource("Resource_qupun"), SubResource("Resource_id8d1"), SubResource("Resource_uinmr"), SubResource("Resource_rerqd")])
-metadata/_custom_type_script = "uid://4ng45m8waddc"

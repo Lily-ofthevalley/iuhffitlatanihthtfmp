@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3eeentyfhe1f" path="res://art/sprites/tilesets/packs/Room_Builder_free_16x16.png" id="2_3d6xc"]
 [ext_resource type="Texture2D" uid="uid://dx0a4btog25n8" path="res://art/sprites/tilesets/packs/Interiors_16x16.png" id="3_3d6xc"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
-[ext_resource type="Texture2D" uid="uid://iu3deia34cxt" path="res://art/sprites/tilesets/packs/Interiors2_16x16.png" id="4_quhyb"]
+[ext_resource type="Texture2D" uid="uid://d4kdrspo7vrre" path="res://art/sprites/tilesets/packs/Interiors2_16x16.png" id="4_quhyb"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://cjvjyg1ots8bx" path="res://scenes/itemKast.tscn" id="8_k7gr1"]
 

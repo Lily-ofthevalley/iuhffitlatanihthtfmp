@@ -34,8 +34,9 @@ static byte CIRCLE[8] = {
   B00111100
 };
 static KY040 g_rotaryEncoder(KNOB_CLK_PIN,KNOB_DT_PIN);
-static AsyncWebServer server(80);
-static AsyncWebSocket ws("/ws");
+String knobState = "";
+String inputString = "";      // a String to hold incoming data
+bool stringComplete = false;  // whether the string is complete
 
 
 // Shift out a byte to the 74HC595
@@ -63,7 +64,12 @@ void drawLine(byte *matrix, int x0, int y0, int x1, int y1) {
 }
 
 // Draw the compass with full line at given angle (radians)
-void drawCompass(float angleRad) {
+void drawCompass(bool enabled, float angleRad) {
+  if (!enabled) {
+    digitalWrite(COMPASS_LAT_PIN, LOW);
+    digitalWrite(COMPASS_LAT_PIN, HIGH);
+    return;
+  }
   byte matrix[8] = {0}; // Start with all LEDs off
   // Copy the circle into the matrix
   for (int i = 0; i < 8; i++) {
@@ -110,99 +116,65 @@ void setup() {
   pinMode(COMPASS_LAT_PIN, OUTPUT);
   pinMode(COMPASS_CLK_PIN, OUTPUT);
   Serial.begin(115200);
-  WiFi.mode(WIFI_AP);
-  WiFi.softAP("SCRIPTKIDDIE", "kattenburger");
-
-
-  //
-  // Run in terminal: websocat ws://192.168.4.1/ws => should stream data
-  //
-  ws.onEvent([](AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
-    (void)len;
-
-    if (type == WS_EVT_CONNECT) {
-      ws.textAll("hello");
-      Serial.println("ws: new client connected");
-      client->setCloseClientOnQueueFull(false);
-      client->ping();
-
-    } else if (type == WS_EVT_DISCONNECT) {
-      ws.textAll("bye");
-      Serial.println("ws: client disconnected");
-
-    } else if (type == WS_EVT_ERROR) {
-      Serial.println("ws error");
-
-    } else if (type == WS_EVT_PONG) {
-      Serial.println("ws: pong");
-
-    } else if (type == WS_EVT_DATA) {
-      AwsFrameInfo *info = (AwsFrameInfo *)arg;
-      Serial.printf("index: %" PRIu64 ", len: %" PRIu64 ", final: %" PRIu8 ", opcode: %" PRIu8 "\n", info->index, info->len, info->final, info->opcode);
-      String msg = "";
-      if (info->final && info->index == 0 && info->len == len) {
-        if (info->opcode == WS_TEXT) {
-          data[len] = 0;
-          // Serial.printf("ws text: %s\n", (char *)data);
-          msg = String((char * )data);
-          msg.trim();
-          if (msg.startsWith("COMPASS: ") && msg.length() > 9) {
-            String payload = msg.substring(9);
-            JsonDocument compass;
-            deserializeJson(compass, payload);
-            Serial.printf("Compass:\n\tEnabled: %s\n\tAngle: %f\n\n", compass["enabled"].as<bool>() ? "true" : "false", compass["angle"].as<float>());
-            compassAngle = compass["angle"].as<float>();
-            compassEnabled = compass["enabled"].as<float>();
-          }
-        }
-      }
-    }
-  });
-
-  // shows how to prevent a third WS client to connect
-  server.addHandler(&ws).addMiddleware([](AsyncWebServerRequest *request, ArMiddlewareNext next) {
-    // ws.count() is the current count of WS clients: this one is trying to upgrade its HTTP connection
-    if (ws.count() > 1) {
-      // if we have 2 clients or more, prevent the next one to connect
-      request->send(503, "text/plain", "Server is busy");
-    } else {
-      // process next middleware and at the end the handler
-      next();
-    }
-  });
-
-  server.addHandler(&ws);
-
-  server.begin();
+  
+  inputString.reserve(200);
 }
 
 
 static uint32_t lastHeap = 0;
 
 void loop() {
-  drawCompass(compassAngle);
-
-  uint32_t now = millis();
   switch (g_rotaryEncoder.getRotation()) {
     case KY040::CLOCKWISE:
+      knobState = "clockwise";
       knobValue++;
-      ws.printfAll("%i", knobValue);
       break;
     case KY040::COUNTERCLOCKWISE:
       knobValue--;
-      ws.printfAll("%i", knobValue);
+      knobState = "counterclockwise";
+      break;
+    case KY040::IDLE:
+      knobState = "idle";
+      break;
+    case KY040::ACTIVE:
+      knobState = "active";
       break;
   }
+  if (knobState != "idle") {
+    Serial.printf("KNOB: %s\n", knobState);
+  }
 
-  if (now - lastHeap >= 2000) {
-    Serial.printf("Connected clients: %u / %u total\n", ws.count(), ws.getClients().size());
+  if (stringComplete) {
+    Serial.println(inputString);
+    inputString.trim();
+    if (inputString.startsWith("COMPASS: ") && inputString.length() > 9) {
+            String payload = inputString.substring(9);
+            JsonDocument compass;
+            deserializeJson(compass, payload);
+            // Serial.printf("Compass:\n\tEnabled: %s\n\tAngle: %f\n\n", compass["enabled"].as<bool>() ? "true" : "false", compass["angle"].as<float>());
+            compassAngle = compass["angle"].as<float>();
+            compassEnabled = compass["enabled"].as<float>();
+    }
+    if (inputString.startsWith("GET_KNOB")) {
+            Serial.printf("KNOB: %i\n", knobValue);
+    }
+    // clear the string:
+    inputString = "";
+    stringComplete = false;
+  }
 
-    // this can be called to also set a soft limit on the number of connected clients
-    ws.cleanupClients(2);  // no more than 2 clients
+  drawCompass(compassEnabled, compassAngle);
+}
 
-#ifdef ESP32
-    Serial.printf("Free heap: %" PRIu32 "\n", ESP.getFreeHeap());
-#endif
-    lastHeap = now;
+
+void serialEvent() {
+  while (Serial.available()) {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+    // add it to the inputString:
+    inputString += inChar;
+    if (inChar == '\n') {
+      stringComplete = true;
+    }
   }
 }

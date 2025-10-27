@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4kdrspo7vrre"
-path="res://.godot/imported/Interiors2_16x16.png-310dc90bd3065ce2cdc9f421ad282eee.ctex"
+uid="uid://4xeg8yetmivh"
+path="res://.godot/imported/Modern_Office_Shadowless_16x16.png-46423ee2180f462063631e2bd3a8560c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/tilesets/packs/Interiors2_16x16.png"
-dest_files=["res://.godot/imported/Interiors2_16x16.png-310dc90bd3065ce2cdc9f421ad282eee.ctex"]
+source_file="res://art/sprites/tilesets/packs/Modern_Office_Shadowless_16x16.png"
+dest_files=["res://.godot/imported/Modern_Office_Shadowless_16x16.png-46423ee2180f462063631e2bd3a8560c.ctex"]
 
 [params]
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt7f4o77fujby"]
+
+[ext_resource type="AudioStream" uid="uid://qrxqcghal1vr" path="res://ReadyPixelOne.mp3" id="1_f6gl3"]
+
+[node name="bg_music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_f6gl3")
+autoplay = true

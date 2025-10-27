@@ -2,9 +2,13 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var inv: Inv
 const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
 var direction = Direction.Right
+
+func player():
+	pass
 
 func _ready():
 	$AnimatedSprite2D.play("death")
@@ -74,3 +78,7 @@ func handle_movement_animation(direction: Direction, moving: bool = true):
 				anim.play("back_walk")
 			else:
 				anim.play("back_idle")
+
+func collect(item):
+	inv.insert(item)
+	

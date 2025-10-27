@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnnthk58xkrru"]
+
+[ext_resource type="Texture2D" uid="uid://boefos6la4ds5" path="res://art/sprites/tilesets/floors/wooden.png" id="1_h1oto"]
+[ext_resource type="Script" uid="uid://b3hifl6xewfni" path="res://scenes/item_display.gd" id="2_n7f1c"]
+
+[node name="inv_UI_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1136.0
+offset_bottom = -632.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(8, 8)
+script = ExtResource("2_n7f1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_h1oto")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+pivot_offset = Vector2(8, 8)
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+offset = Vector2(0, -20)

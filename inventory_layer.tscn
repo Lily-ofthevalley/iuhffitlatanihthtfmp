@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://wt24l3oi5q1w"]
+
+[ext_resource type="Script" uid="uid://bw7a25u144xvb" path="res://scripts/inv_ui.gd" id="1_0h3ps"]
+[ext_resource type="Texture2D" uid="uid://cywipwe8mfw4q" path="res://art/Cute_Fantasy_Free/Tiles/FarmLand_Tile.png" id="2_1wvso"]
+[ext_resource type="PackedScene" uid="uid://cnnthk58xkrru" path="res://scenes/inv_ui_slot.tscn" id="3_spbc7"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_0h3ps")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -206.0
+offset_top = -260.0
+offset_right = 206.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_1wvso")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 1
+offset_right = 56.0
+offset_bottom = 36.0
+scale = Vector2(6.66, 6.66)
+pivot_offset = Vector2(-3, -2)
+columns = 3
+
+[node name="inv_UI_slot" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+layout_mode = 2
+
+[node name="inv_UI_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+layout_mode = 2
+
+[node name="inv_UI_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+layout_mode = 2
+
+[node name="inv_UI_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+layout_mode = 2
+
+[node name="inv_UI_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+layout_mode = 2
+
+[node name="inv_UI_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+layout_mode = 2

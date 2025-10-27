@@ -8503,3 +8503,4 @@ position = Vector2(320.5, 122)
 shape = SubResource("RectangleShape2D_4ccfe")
 
 [connection signal="body_entered" from="Area2D" to="." method="onClosetTransitionPointEntry"]
+[connection signal="body_exited" from="Area2D" to="." method="onClosetTransitionPointExit"]

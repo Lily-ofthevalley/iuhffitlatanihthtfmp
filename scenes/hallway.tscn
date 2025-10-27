@@ -70,7 +70,7 @@ trigger_area = NodePath("FactTrigger")
 fact = "Er iemand jarig is"
 
 [node name="FactTrigger" type="CollisionShape2D" parent="FunFacts/taart"]
-position = Vector2(307.70148, 429.72876)
+position = Vector2(285, 388)
 rotation = -0.6614798
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_txc3n")
@@ -84,5 +84,5 @@ trigger_area = NodePath("FactTrigger")
 fact = "De koffie hier vies is"
 
 [node name="FactTrigger" type="CollisionShape2D" parent="FunFacts/koffie"]
-position = Vector2(139, 440.1875)
+position = Vector2(143, 442)
 shape = SubResource("RectangleShape2D_txc3n")

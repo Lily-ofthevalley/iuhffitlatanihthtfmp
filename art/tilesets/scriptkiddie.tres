@@ -11485,6 +11485,7 @@ texture = ExtResource("4_s2mtl")
 2:51/0 = 0
 
 [resource]
+resource_local_to_scene = true
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_q0eb6")
 sources/1 = SubResource("TileSetAtlasSource_yubdn")

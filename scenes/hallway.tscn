@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://vbn7nguvekub"]
+[gd_scene load_steps=7 format=4 uid="uid://vbn7nguvekub"]
 
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="3_3w3tr"]
 [ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="4_1k2v8"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txc3n"]
 size = Vector2(13.016846, 9.215088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k2v8"]
+size = Vector2(58, 28)
 
 [node name="Node2D" type="Node2D"]
 
@@ -93,5 +96,15 @@ fact = "De koffie hier vies is"
 [node name="FactTrigger" type="CollisionShape2D" parent="FunFacts/koffie"]
 position = Vector2(143, 442)
 shape = SubResource("RectangleShape2D_txc3n")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(490, 469)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(58, 167)
+shape = SubResource("RectangleShape2D_1k2v8")
+
+[connection signal="body_entered" from="Area2D" to="." method="onClosetTransitionPointEntry"]
+[connection signal="body_exited" from="Area2D" to="." method="onClosetTransitionPointExit"]
 
 [editable path="player"]

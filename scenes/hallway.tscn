@@ -59,6 +59,13 @@ tile_set = ExtResource("6_yjeik")
 [node name="player" parent="." instance=ExtResource("6_txc3n")]
 position = Vector2(504, 515)
 
+[node name="Camera2D" parent="player" index="3"]
+zoom = Vector2(10, 10)
+limit_left = 250
+limit_top = 200
+limit_right = 750
+limit_bottom = 642
+
 [node name="FunFacts" type="Node" parent="."]
 
 [node name="taart" parent="FunFacts" node_paths=PackedStringArray("gui_target", "trigger_area") instance=ExtResource("3_3w3tr")]
@@ -86,3 +93,5 @@ fact = "De koffie hier vies is"
 [node name="FactTrigger" type="CollisionShape2D" parent="FunFacts/koffie"]
 position = Vector2(143, 442)
 shape = SubResource("RectangleShape2D_txc3n")
+
+[editable path="player"]

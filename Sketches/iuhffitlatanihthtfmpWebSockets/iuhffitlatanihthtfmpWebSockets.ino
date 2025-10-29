@@ -115,15 +115,11 @@ void setup() {
   pinMode(COMPASS_DAT_PIN, OUTPUT);
   pinMode(COMPASS_LAT_PIN, OUTPUT);
   pinMode(COMPASS_CLK_PIN, OUTPUT);
-  Serial.begin(115200);
-  
   inputString.reserve(200);
+  Serial.begin(115200);
 }
 
-
-static uint32_t lastHeap = 0;
-
-void loop() {
+void updateRotaryEncoder() {
   switch (g_rotaryEncoder.getRotation()) {
     case KY040::CLOCKWISE:
       knobState = "clockwise";
@@ -133,36 +129,52 @@ void loop() {
       knobValue--;
       knobState = "counterclockwise";
       break;
-    case KY040::IDLE:
-      knobState = "idle";
-      break;
-    case KY040::ACTIVE:
-      knobState = "active";
-      break;
   }
-  if (knobState != "idle") {
-    Serial.printf("KNOB: %s\n", knobState);
-  }
+}
 
+String collectSensorData() {
+  String payload = "";
+  // Combine data into JSON object and serialize to string
+  JsonDocument sensorData;
+  sensorData["knobValue"] = knobValue;
+  serializeJson(sensorData, payload);
+
+  return payload;
+}
+
+
+
+void loop() {
+  updateRotaryEncoder();
+
+  // Check for new incoming data
   if (stringComplete) {
-    Serial.println(inputString);
     inputString.trim();
-    if (inputString.startsWith("COMPASS: ") && inputString.length() > 9) {
-            String payload = inputString.substring(9);
-            JsonDocument compass;
-            deserializeJson(compass, payload);
-            // Serial.printf("Compass:\n\tEnabled: %s\n\tAngle: %f\n\n", compass["enabled"].as<bool>() ? "true" : "false", compass["angle"].as<float>());
-            compassAngle = compass["angle"].as<float>();
-            compassEnabled = compass["enabled"].as<float>();
+
+    if (inputString.startsWith("GRAB")) {
+      // Client is requesting new data
+      Serial.println(collectSensorData());
     }
-    if (inputString.startsWith("GET_KNOB")) {
-            Serial.printf("KNOB: %i\n", knobValue);
+    else if (inputString.startsWith("CONFIRM")) {
+      // Client confirmed receival of data.
+      // TODO: reset some variables here
     }
+    else if (inputString.startsWith("DATA: ") && inputString.length() > 6) {
+      Serial.println(collectSensorData()); // First respond with our sensor data
+
+      String sensorData = inputString.substring(6);
+      JsonDocument payload;
+      deserializeJson(payload, sensorData);
+      compassAngle = payload["compass"]["angle"].as<float>();
+      compassEnabled = payload["compass"]["enabled"].as<float>();
+    }
+
     // clear the string:
     inputString = "";
     stringComplete = false;
   }
 
+  // Update compass
   drawCompass(compassEnabled, compassAngle);
 }
 

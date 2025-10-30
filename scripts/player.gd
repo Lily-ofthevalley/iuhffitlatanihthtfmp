@@ -7,11 +7,15 @@ const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
 var direction = Direction.Right
 
+
+# This is needed to make scene switching work apparantly
 func player():
 	pass
 
-func _ready():
+func dead_on_ground():
+	$AnimatedSprite2D.speed_scale = 0
 	$AnimatedSprite2D.play("death")
+
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
@@ -82,3 +86,11 @@ func handle_movement_animation(direction: Direction, moving: bool = true):
 func collect(item):
 	inv.insert(item)
 	
+
+
+func _on_opening_cutscene_finish() -> void:
+	$AnimatedSprite2D.speed_scale = 1
+	await get_tree().create_timer(5).timeout
+	$OpeningCutscene.close()
+
+	pass # Replace with function body.

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://be7ctlfsfho0y"]
+[gd_scene load_steps=10 format=3 uid="uid://be7ctlfsfho0y"]
 
 [ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="1_4ijj3"]
 [ext_resource type="Script" uid="uid://dos43exwphhf7" path="res://scenes/ti_lab.gd" id="1_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
+[ext_resource type="PackedScene" uid="uid://blwvqhrwld2un" path="res://dialogue/opening_cutscene.tscn" id="4_kw4n8"]
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="4_quhyb"]
 [ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
@@ -38,16 +39,18 @@ layer_6/tile_data = PackedInt32Array(1245191, 65542, 8, 1310727, 65542, 9, 12451
 position = Vector2(168, 95)
 inv = null
 
-[node name="AnimatedSprite2D" parent="player" index="0"]
+[node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"front_idle"
 
-[node name="Camera2D" parent="player" index="2"]
+[node name="Camera2D" parent="player" index="3"]
 position = Vector2(-2, 20)
 zoom = Vector2(9, 9)
 limit_left = 73
 limit_top = 47
 limit_right = 471
 limit_bottom = 277
+
+[node name="OpeningCutscene" parent="player" instance=ExtResource("4_kw4n8")]
 
 [node name="npc" parent="." instance=ExtResource("6_t1gnp")]
 position = Vector2(421, 99)
@@ -84,6 +87,7 @@ shape = SubResource("RectangleShape2D_quhyb")
 position = Vector2(344, 76)
 shape = SubResource("RectangleShape2D_kw4n8")
 
+[connection signal="opening_cutscene_finish" from="player/OpeningCutscene" to="player" method="_on_opening_cutscene_finish"]
 [connection signal="body_entered" from="Area2D" to="." method="onClosetTransitionPointEntry"]
 [connection signal="body_exited" from="Area2D" to="." method="onClosetTransitionPointExit"]
 

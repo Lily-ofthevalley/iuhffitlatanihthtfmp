@@ -3,6 +3,10 @@ extends Node2D
 func _process(_delta):
 	change_scene()
 
+func _enter_tree() -> void:
+	if !global.transition_scene:
+		$player/OpeningCutscene.play(get_tree().create_timer(2.0))
+
 func onClosetTransitionPointEntry(body) :
 	if body.has_method("player") :
 		global.transition_scene = true

@@ -11,6 +11,7 @@ func player():
 	pass
 
 func _ready():
+	$AnimatedSprite2D.speed_scale = 0
 	$AnimatedSprite2D.play("death")
 
 func _physics_process(delta: float) -> void:
@@ -82,3 +83,11 @@ func handle_movement_animation(direction: Direction, moving: bool = true):
 func collect(item):
 	inv.insert(item)
 	
+
+
+func _on_opening_cutscene_finish() -> void:
+	$AnimatedSprite2D.speed_scale = 1
+	await get_tree().create_timer(5).timeout
+	$OpeningCutscene.close()
+
+	pass # Replace with function body.

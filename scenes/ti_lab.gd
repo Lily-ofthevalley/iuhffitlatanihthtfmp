@@ -5,6 +5,7 @@ func _process(_delta):
 
 func _enter_tree() -> void:
 	if !global.transition_scene:
+		$player.dead_on_ground()
 		$player/OpeningCutscene.play(get_tree().create_timer(2.0))
 
 func onClosetTransitionPointEntry(body) :

@@ -433,7 +433,7 @@ visible = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -19)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"death"
+animation = &"front_idle"
 offset = Vector2(0, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

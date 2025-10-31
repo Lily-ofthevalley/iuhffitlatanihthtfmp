@@ -39,16 +39,12 @@ layer_6/tile_data = PackedInt32Array(1245191, 65542, 8, 1310727, 65542, 9, 12451
 position = Vector2(168, 95)
 inv = null
 
-[node name="AnimatedSprite2D" parent="player" index="1"]
-animation = &"front_idle"
-
 [node name="Camera2D" parent="player" index="3"]
-position = Vector2(-2, 20)
 zoom = Vector2(9, 9)
-limit_left = 73
-limit_top = 47
-limit_right = 471
-limit_bottom = 277
+limit_left = 86
+limit_top = 60
+limit_right = 484
+limit_bottom = 290
 
 [node name="OpeningCutscene" parent="player" instance=ExtResource("4_kw4n8")]
 

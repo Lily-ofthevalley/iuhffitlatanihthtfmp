@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcf8iuohsogbk"]
+[gd_scene load_steps=7 format=3 uid="uid://dcf8iuohsogbk"]
 
 [ext_resource type="Script" uid="uid://bf7dhirmyqpwl" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://cqrtrsfv6rhxv" path="res://art/sprites/tilesets/fences.png" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://6ix5bbdr1566" path="res://scenes/noisy_button.tscn" id="3_bqqt6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.39439616, 0.5893435, 0.9669823, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(0.10834242, 0.28942397, 0.6824411, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.2031976, 0.42350727, 0.8900198, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -40,45 +65,69 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_ekxnf")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.35300002
-anchor_top = 0.5
+anchor_top = 0.526
 anchor_right = 0.647
-anchor_bottom = 0.947
+anchor_bottom = 0.952
 offset_left = -0.40600586
-offset_top = 13.5
+offset_top = 0.15197754
 offset_right = 0.40600586
-offset_bottom = -0.15600586
+offset_bottom = 0.104003906
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 5
 
-[node name="Start" type="Button" parent="Buttons"]
+[node name="Start" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Start"
 
-[node name="MeetTheSquad" type="Button" parent="Buttons"]
+[node name="AboutUs" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Ontmoet de Squad"
 
-[node name="Settings" type="Button" parent="Buttons"]
+[node name="Instellingen" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Instellingen"
 
-[node name="Credits" type="Button" parent="Buttons"]
+[node name="Credits" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "Credits"
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
+text = "Credits
+"
 
-[node name="Quit" type="Button" parent="Buttons"]
+[node name="Sluiten" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Sluiten"
 
 [node name="Title" type="Label" parent="."]
@@ -99,7 +148,7 @@ to finish my project"
 
 [connection signal="close_requested" from="Popup" to="." method="_on_popup_close"]
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Buttons/MeetTheSquad" to="." method="_on_info_pressed"]
-[connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/AboutUs" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="Buttons/Instellingen" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="Buttons/Quit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Buttons/Sluiten" to="." method="_on_exit_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
 [ext_resource type="PackedScene" uid="uid://blwvqhrwld2un" path="res://dialogue/opening_cutscene.tscn" id="4_kw4n8"]
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="4_quhyb"]
-[ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
+[ext_resource type="PackedScene" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quhyb"]

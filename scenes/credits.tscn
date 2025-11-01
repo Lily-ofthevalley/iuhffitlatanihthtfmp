@@ -1,6 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4iont5npaqbg"]
+[gd_scene load_steps=7 format=3 uid="uid://xl0x4ltwi464"]
 
 [ext_resource type="Script" uid="uid://ca82idfc0i1xy" path="res://scripts/credits.gd" id="1_0bpdh"]
+[ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="2_2ckv8"]
+
+[sub_resource type="FontVariation" id="FontVariation_0ctdu"]
+base_font = ExtResource("2_2ckv8")
+variation_opentype = {
+2003265652: 600
+}
+spacing_space = 1
+spacing_top = 1
 
 [sub_resource type="Animation" id="Animation_0bpdh"]
 length = 0.001
@@ -57,9 +66,11 @@ anchor_bottom = 1.0
 offset_left = -0.21600342
 offset_top = 648.0
 offset_right = 0.21594238
-offset_bottom = 9208.0
+offset_bottom = 21340.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_0ctdu")
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]CREDITS[/center]
 

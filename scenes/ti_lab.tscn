@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://be7ctlfsfho0y"]
+[gd_scene load_steps=11 format=3 uid="uid://be7ctlfsfho0y"]
 
 [ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="1_4ijj3"]
 [ext_resource type="Script" uid="uid://dos43exwphhf7" path="res://scenes/ti_lab.gd" id="1_t1gnp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="4_quhyb"]
 [ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
+[ext_resource type="PackedScene" uid="uid://bi2251bqe0i53" path="res://scenes/scene_transition_animation.tscn" id="8_k7gr1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quhyb"]
 size = Vector2(30.75, 5.25)
@@ -82,6 +83,8 @@ shape = SubResource("RectangleShape2D_quhyb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(344, 76)
 shape = SubResource("RectangleShape2D_kw4n8")
+
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("8_k7gr1")]
 
 [connection signal="opening_cutscene_finish" from="player/OpeningCutscene" to="player" method="_on_opening_cutscene_finish"]
 [connection signal="body_entered" from="Area2D" to="." method="onClosetTransitionPointEntry"]

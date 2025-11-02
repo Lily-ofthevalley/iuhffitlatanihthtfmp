@@ -25,6 +25,11 @@ global="*res://scripts/global.gd"
 BgMusic="*res://scenes/bg_music.tscn"
 QuestManager="*res://quest/QuestManager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 ui_left={

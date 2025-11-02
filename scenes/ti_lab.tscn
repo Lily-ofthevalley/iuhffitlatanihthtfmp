@@ -91,4 +91,7 @@ shape = SubResource("RectangleShape2D_kw4n8")
 [node name="itemChest" parent="." instance=ExtResource("6_kw4n8")]
 position = Vector2(242, 100)
 
+[node name="itemChest" parent="." instance=ExtResource("6_kw4n8")]
+position = Vector2(242, 100)
+
 [editable path="player"]

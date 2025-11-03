@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://blwvqhrwld2un" path="res://dialogue/opening_cutscene.tscn" id="4_kw4n8"]
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="4_quhyb"]
 [ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
-[ext_resource type="PackedScene" uid="uid://cjvjyg1ots8bx" path="res://scenes/itemKast.tscn" id="6_kw4n8"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
 [ext_resource type="PackedScene" path="res://scenes/itemKast.tscn" id="7_kw4n8"]
 
@@ -84,17 +83,11 @@ shape = SubResource("RectangleShape2D_quhyb")
 position = Vector2(344, 76)
 shape = SubResource("RectangleShape2D_kw4n8")
 
-[node name="Node2D" parent="." instance=ExtResource("7_kw4n8")]
-position = Vector2(194, 109)
+[node name="itemChest" parent="." instance=ExtResource("7_kw4n8")]
+position = Vector2(242, 100)
 
 [connection signal="opening_cutscene_finish" from="player/OpeningCutscene" to="player" method="_on_opening_cutscene_finish"]
 [connection signal="body_entered" from="Area2D" to="." method="onClosetTransitionPointEntry"]
 [connection signal="body_exited" from="Area2D" to="." method="onClosetTransitionPointExit"]
-
-[node name="itemChest" parent="." instance=ExtResource("6_kw4n8")]
-position = Vector2(242, 100)
-
-[node name="itemChest" parent="." instance=ExtResource("6_kw4n8")]
-position = Vector2(242, 100)
 
 [editable path="player"]

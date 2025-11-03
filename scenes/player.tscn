@@ -500,7 +500,7 @@ func update():
 	var response = serial.readline()
 	
 	if response.is_empty(): # This sometimes happens. Probably because we send so much data so rapidly to the poor thing
-		return false;
+		return false
 	
 	serial.writeline(\"CONFIRM\")
 	

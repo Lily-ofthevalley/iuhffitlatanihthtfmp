@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1lvguo6cmrcu"]
+
+[sub_resource type="GDScript" id="GDScript_qlg0r"]
+script/source = "extends Node
+
+class_name ArduinoInterface
+var _compass: Dictionary = {\"enabled\": true, \"angle\": 0.0}
+
+var _knob_absolute_value: int = 0
+var _knob_relative_value: int = 0
+var _knob_zero_offset: int = 0 # The absolute offset from zero, we use this to calibrate the rotary encoder
+
+
+var _last_data: String =  \"\"
+var serial: GdSerial
+var poll_timer : Timer
+@export var serial_port: String
+
+func _ready() -> void:
+	# Create serial instance
+	serial = GdSerial.new()
+	
+	# Configure and open port
+	serial.set_port(serial_port)
+	serial.set_baud_rate(115200)
+	serial.set_timeout(10)
+	
+	if serial.open():
+		print(\"Serial opened succesfully!\")
+		await get_tree().create_timer(2).timeout
+		
+		set_process(true) # We can now start communicating with the Arduino.
+		
+		# Create a timer so we can periodically sync with the Arduino
+		poll_timer = Timer.new()
+		poll_timer.autostart = true
+		poll_timer.wait_time = 0.005
+		poll_timer.connect(\"timeout\", Callable(self, \"update\"))
+		self.add_child(poll_timer)
+	else:
+		print(\"Failed to connect through serial\")
+
+#func _process(delta: float) -> void:
+	#update()
+
+
+# Updates the compass data, to be sent when an update cycle happens
+func update_compass(enabled: bool, angle: float):
+	self._compass = { \"enabled\": enabled, \"angle\": angle }
+
+func get_compass() -> Dictionary:
+	return self._compass
+
+func get_knob_absolute_value() -> int:
+	return _knob_absolute_value
+
+func get_knob_relative_value() -> int:
+	return _knob_relative_value
+
+func calibrate_knob():
+	_knob_zero_offset = _knob_absolute_value  # Use current absolute value as baseline
+	_knob_relative_value = 0
+	print_debug(\"Knob calibration reset!\")
+
+
+# This function synchronizes both ways with the Arduino. It first sends our data, and then waits for the Arduino to respond with their data.
+func update():
+	if !is_processing() or !serial.is_open():
+		return false
+	serial.clear_buffer()
+
+	
+	# Politely ask Arduino for some cute sensor data by sending it ours first
+	serial.writeline(\"DATA: %s\" % JSON.stringify({
+		\"compass\": _compass,
+	}))
+	
+	while serial.bytes_available() == 0:
+		await get_tree().create_timer(0.001).timeout
+	
+	var response = serial.readline()
+	
+	if response.is_empty(): # This sometimes happens. Probably because we send so much data so rapidly to the poor thing
+		return false
+	
+	serial.writeline(\"CONFIRM\")
+	
+	# Check if anything changed, else, don't debug print.
+	if response != _last_data:
+		print_debug(\"Arduino: Received new sensor data: \", response)
+		
+		var response_json = JSON.parse_string(response)
+		if response_json == null:
+			push_error(\"Arduino: Serial payload JSON deserialize error\")
+			return false
+		
+		_knob_absolute_value = int(response_json.get(\"knobValue\"))
+		
+		# Calculate difference from calibration zero offset
+		_knob_relative_value = _knob_absolute_value - _knob_zero_offset
+		
+		#print_debug(\"Knob absolute value: \", _knob_absolute_value)
+		#print_debug(\"Knob relative value: \", _knob_relative_value)
+		
+	_last_data = response
+"
+
+[node name="Arduino" type="Node"]
+script = SubResource("GDScript_qlg0r")
+serial_port = "/dev/ttyUSB0"

@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready():
+	$ButtonHint.visible = false
+	
 func _process(_delta):
 	change_scene()
 
@@ -10,10 +13,12 @@ func _enter_tree() -> void:
 
 func onClosetTransitionPointEntry(body) :
 	if body.has_method("player") :
+		$ButtonHint.visible = true
 		global.transition_scene = true
-
+#
 func onClosetTransitionPointExit(body) :
 	if body.has_method("player") :
+		$ButtonHint.visible = false
 		global.transition_scene = false
 
 func change_scene():

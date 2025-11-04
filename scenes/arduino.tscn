@@ -87,7 +87,7 @@ func update():
 	
 	# Check if anything changed, else, don't debug print.
 	if response != _last_data:
-		print_debug(\"Arduino: Received new sensor data: \", response)
+		#print_debug(\"Arduino: Received new sensor data: \", response)
 		
 		var response_json = JSON.parse_string(response)
 		if response_json == null:

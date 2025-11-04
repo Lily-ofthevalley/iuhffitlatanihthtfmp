@@ -428,7 +428,6 @@ script = ExtResource("1_g2els")
 inv = ExtResource("2_dqkch")
 
 [node name="InvUI" parent="." instance=ExtResource("3_qlg0r")]
-visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -19)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwh2n5kd85ynr"]
+[gd_scene load_steps=5 format=3 uid="uid://dwh2n5kd85ynr"]
 
 [ext_resource type="Script" uid="uid://ckq4x5gmpnghv" path="res://quest/npc_quest.gd" id="1_2a833"]
+[ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="2_4r4mx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg41g"]
 bg_color = Color(0, 0, 0, 1)
@@ -45,6 +46,8 @@ offset_left = 17.0
 offset_top = 17.0
 offset_right = 102.0
 offset_bottom = 47.0
+theme_override_fonts/normal_font = ExtResource("2_4r4mx")
+theme_override_font_sizes/normal_font_size = 20
 text = "Name"
 
 [node name="Text" type="RichTextLabel" parent="quest_dialogue/Panel"]
@@ -54,7 +57,11 @@ offset_top = 49.0
 offset_right = 1096.0
 offset_bottom = 130.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_4r4mx")
+theme_override_font_sizes/normal_font_size = 20
 text = "Text"
+visible_characters = 1
+visible_ratio = 0.25
 
 [node name="quest1_ui" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -79,6 +86,8 @@ offset_left = 15.0
 offset_top = 13.0
 offset_right = 222.0
 offset_bottom = 97.0
+theme_override_fonts/normal_font = ExtResource("2_4r4mx")
+theme_override_font_sizes/normal_font_size = 20
 text = "Steel de sensoren uit de kluis"
 
 [node name="yesButton1" type="Button" parent="quest1_ui/Panel"]
@@ -87,6 +96,8 @@ offset_left = 34.0
 offset_top = 109.0
 offset_right = 94.0
 offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("2_4r4mx")
+theme_override_font_sizes/font_size = 20
 text = "Accept"
 
 [node name="noButton1" type="Button" parent="quest1_ui/Panel"]
@@ -95,6 +106,8 @@ offset_left = 146.0
 offset_top = 111.0
 offset_right = 212.0
 offset_bottom = 142.0
+theme_override_fonts/font = ExtResource("2_4r4mx")
+theme_override_font_sizes/font_size = 20
 text = "Decline"
 
 [node name="quest2_ui" type="MarginContainer" parent="."]
@@ -120,6 +133,8 @@ offset_left = 15.0
 offset_top = 13.0
 offset_right = 222.0
 offset_bottom = 97.0
+theme_override_fonts/normal_font = ExtResource("2_4r4mx")
+theme_override_font_sizes/normal_font_size = 20
 text = "Vindt een lichaam voor je robot"
 
 [node name="yesButton2" type="Button" parent="quest2_ui/Panel"]
@@ -128,6 +143,8 @@ offset_left = 34.0
 offset_top = 109.0
 offset_right = 94.0
 offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("2_4r4mx")
+theme_override_font_sizes/font_size = 20
 text = "Accept"
 
 [node name="noButton2" type="Button" parent="quest2_ui/Panel"]
@@ -136,6 +153,8 @@ offset_left = 146.0
 offset_top = 111.0
 offset_right = 212.0
 offset_bottom = 142.0
+theme_override_fonts/font = ExtResource("2_4r4mx")
+theme_override_font_sizes/font_size = 20
 text = "Decline"
 
 [node name="quest3_ui" type="MarginContainer" parent="."]
@@ -161,6 +180,8 @@ offset_left = 15.0
 offset_top = 13.0
 offset_right = 222.0
 offset_bottom = 97.0
+theme_override_fonts/normal_font = ExtResource("2_4r4mx")
+theme_override_font_sizes/normal_font_size = 20
 text = "Pak het moederboord"
 
 [node name="yesButton3" type="Button" parent="quest3_ui/Panel"]
@@ -169,6 +190,8 @@ offset_left = 34.0
 offset_top = 109.0
 offset_right = 94.0
 offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("2_4r4mx")
+theme_override_font_sizes/font_size = 20
 text = "Accept"
 
 [node name="noButton3" type="Button" parent="quest3_ui/Panel"]
@@ -177,6 +200,8 @@ offset_left = 146.0
 offset_top = 111.0
 offset_right = 212.0
 offset_bottom = 142.0
+theme_override_fonts/font = ExtResource("2_4r4mx")
+theme_override_font_sizes/font_size = 20
 text = "Decline"
 
 [connection signal="pressed" from="quest1_ui/Panel/yesButton1" to="." method="_on_yes_button_1_pressed2"]

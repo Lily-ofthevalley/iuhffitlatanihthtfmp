@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgkl45ckcmm32"]
+[gd_scene load_steps=16 format=3 uid="uid://bgkl45ckcmm32"]
 
 [ext_resource type="Script" uid="uid://be3bfhano1767" path="res://scripts/npc.gd" id="1_abqhh"]
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_nh2m4"]
 [ext_resource type="PackedScene" uid="uid://cqlr1en3jisyg" path="res://dialogue/dialogue.tscn" id="5_4wlns"]
+[ext_resource type="FontFile" uid="uid://cic6qm2rhbpuf" path="res://art/fonts/tinypixel.otf" id="5_hwkja"]
 [ext_resource type="PackedScene" uid="uid://dwh2n5kd85ynr" path="res://quest/npc_quest.tscn" id="5_tl2vt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abqhh"]
@@ -61,6 +62,15 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7n8xq"]
 radius = 29.017237
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wlns"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 4
+
 [node name="npc" type="CharacterBody2D"]
 script = ExtResource("1_abqhh")
 
@@ -79,41 +89,58 @@ shape = SubResource("CircleShape2D_sptji")
 
 [node name="QuestBox" parent="." instance=ExtResource("5_tl2vt")]
 
+[node name="chat_detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chat_detection_area"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_7n8xq")
+
 [node name="ButtonHint" type="NinePatchRect" parent="."]
-offset_left = -32.0
-offset_top = 15.0
-offset_right = 32.0
-offset_bottom = 33.0
+offset_left = -33.0
+offset_top = 10.0
+offset_right = 34.0
+offset_bottom = 28.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ButtonHint"]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 2.0
-offset_right = 65.0
-offset_bottom = 15.0
-theme_override_font_sizes/normal_font_size = 6
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 67.0
+offset_bottom = 14.0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_constants/text_highlight_v_padding = 0
+theme_override_constants/underline_alpha = 0
+theme_override_constants/strikethrough_alpha = 0
+theme_override_constants/table_h_separation = 0
+theme_override_constants/table_v_separation = 0
+theme_override_fonts/normal_font = ExtResource("5_hwkja")
+theme_override_font_sizes/normal_font_size = 7
 text = "TO INTERECT"
 scroll_active = false
 
 [node name="Panel" type="Panel" parent="ButtonHint"]
 layout_mode = 0
-offset_left = 9.0
-offset_right = 23.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 14.0
 offset_bottom = 15.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4wlns")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="ButtonHint/Panel"]
 layout_mode = 0
-offset_left = 4.0
-offset_right = 14.0
-offset_bottom = 15.0
-theme_override_font_sizes/normal_font_size = 10
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 10.0
+offset_bottom = 11.0
+theme_override_fonts/normal_font = ExtResource("5_hwkja")
+theme_override_font_sizes/normal_font_size = 7
 text = "E"
-
-[node name="chat_detection_area" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chat_detection_area"]
-position = Vector2(1, 6)
-shape = SubResource("CircleShape2D_7n8xq")
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="chat_detection_area" to="." method="_on_chat_detection_area_body_entered"]
 [connection signal="body_exited" from="chat_detection_area" to="." method="_on_chat_detection_area_body_exited"]

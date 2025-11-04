@@ -1,10 +1,12 @@
-[gd_scene load_steps=59 format=3 uid="uid://c13025l3bph2n"]
+[gd_scene load_steps=66 format=3 uid="uid://bgrajflyw8801"]
 
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b5586eh2m4v6i" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://c0v6h1rb17rgs" path="res://inventory/playerInv.tres" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://obq2ig2345ph" path="res://quest/quest_log.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://wt24l3oi5q1w" path="res://inventory_layer.tscn" id="3_qlg0r"]
+[ext_resource type="FontFile" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="6_fjrip"]
+[ext_resource type="FontFile" path="res://art/fonts/tinypixel.otf" id="7_smehm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -422,6 +424,151 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 5.0
 
+[sub_resource type="GDScript" id="GDScript_qlg0r"]
+script/source = "extends Node
+
+class_name ArduinoInterface
+var _compass: Dictionary = {\"enabled\": false, \"angle\": 0.0}
+
+var _knob_absolute_value: int = 0
+var _knob_relative_value: int = 0
+var _knob_zero_offset: int = 0 # The absolute offset from zero, we use this to calibrate the rotary encoder
+
+
+var _last_data: String =  \"\"
+var serial: GdSerial
+var poll_timer : Timer
+@export var serial_port: String
+
+func _ready() -> void:
+	# Create serial instance
+	serial = GdSerial.new()
+	
+	# Configure and open port
+	serial.set_port(serial_port)
+	serial.set_baud_rate(115200)
+	serial.set_timeout(10)
+	
+	if serial.open():
+		print(\"Serial opened succesfully!\")
+		await get_tree().create_timer(2).timeout
+		
+		set_process(true) # We can now start communicating with the Arduino.
+		
+		# Create a timer so we can periodically sync with the Arduino
+		poll_timer = Timer.new()
+		poll_timer.autostart = true
+		poll_timer.wait_time = 0.005
+		poll_timer.connect(\"timeout\", Callable(self, \"update\"))
+		self.add_child(poll_timer)
+	else:
+		print(\"Failed to connect through serial\")
+
+#func _process(delta: float) -> void:
+	#update()
+
+
+# Updates the compass data, to be sent when an update cycle happens
+func update_compass(enabled: bool, angle: float):
+	self._compass = { \"enabled\": enabled, \"angle\": angle }
+
+func get_compass() -> Dictionary:
+	return self._compass
+
+func get_knob_absolute_value() -> int:
+	return _knob_absolute_value
+
+func calibrate_knob():
+	_knob_zero_offset = _knob_absolute_value  # Use current absolute value as baseline
+	_knob_relative_value = 0
+	print_debug(\"Knob calibration reset!\")
+
+
+# This function synchronizes both ways with the Arduino. It first sends our data, and then waits for the Arduino to respond with their data.
+func update():
+	if !is_processing() or !serial.is_open():
+		return false
+	serial.clear_buffer()
+
+	
+	# Politely ask Arduino for some cute sensor data by sending it ours first
+	serial.writeline(\"DATA: %s\" % JSON.stringify({
+		\"compass\": _compass,
+	}))
+	
+	while serial.bytes_available() == 0:
+		await get_tree().create_timer(0.001).timeout
+	
+	var response = serial.readline()
+	
+	if response.is_empty(): # This sometimes happens. Probably because we send so much data so rapidly to the poor thing
+		return false
+	
+	serial.writeline(\"CONFIRM\")
+	
+	# Check if anything changed, else, don't debug print.
+	if response != _last_data:
+		print_debug(\"Arduino: Received new sensor data: \", response)
+		
+		var response_json = JSON.parse_string(response)
+		if response_json == null:
+			push_error(\"Arduino: Serial payload JSON deserialize error\")
+			return false
+		
+		_knob_absolute_value = int(response_json.get(\"knobValue\"))
+		
+		# Calculate difference from calibration zero offset
+		_knob_relative_value = _knob_absolute_value - _knob_zero_offset
+		
+		#print_debug(\"Knob absolute value: \", _knob_absolute_value)
+		#print_debug(\"Knob relative value: \", _knob_relative_value)
+		
+	_last_data = response
+
+
+
+func get_knob():
+	if !is_processing() or !serial.is_open():
+		return false
+		
+	
+	serial.writeline(\"GET_KNOB\")
+	var reading = serial.readline()
+	print(\"Sensor value: \", reading)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur7pv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4r1p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2wvv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v2ag"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_g2els")
@@ -433,7 +580,7 @@ visible = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -19)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"front_idle"
+animation = &"side_idle"
 offset = Vector2(0, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -452,3 +599,86 @@ rotation_smoothing_enabled = true
 drag_vertical_enabled = true
 
 [node name="QuestLog" parent="." instance=ExtResource("3_qhqgy")]
+
+[node name="Arduino" type="Node" parent="."]
+script = SubResource("GDScript_qlg0r")
+serial_port = "/dev/ttyUSB0"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Panel4" type="Panel" parent="CanvasLayer2"]
+offset_left = 63.0
+offset_top = 514.0
+offset_right = 103.0
+offset_bottom = 554.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ur7pv")
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel4"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 48.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("6_fjrip")
+theme_override_font_sizes/font_size = 30
+text = "W"
+
+[node name="Panel3" type="Panel" parent="CanvasLayer2"]
+offset_left = 110.0
+offset_top = 563.0
+offset_right = 150.0
+offset_bottom = 603.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y4r1p")
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 34.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("6_fjrip")
+theme_override_font_sizes/font_size = 30
+text = "D"
+
+[node name="Panel2" type="Panel" parent="CanvasLayer2"]
+offset_left = 62.0
+offset_top = 563.0
+offset_right = 102.0
+offset_bottom = 603.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d2wvv")
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel2"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 2.0
+offset_right = 35.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("6_fjrip")
+theme_override_font_sizes/font_size = 30
+text = "S"
+
+[node name="Panel" type="Panel" parent="CanvasLayer2"]
+offset_left = 14.0
+offset_top = 563.0
+offset_right = 54.0
+offset_bottom = 603.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3v2ag")
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 49.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("6_fjrip")
+theme_override_font_sizes/font_size = 30
+text = "A"
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+offset_left = 41.0
+offset_top = 610.0
+offset_right = 126.0
+offset_bottom = 633.0
+theme_override_fonts/font = ExtResource("7_smehm")
+theme_override_font_sizes/font_size = 14
+text = "Movement"

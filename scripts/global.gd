@@ -13,12 +13,6 @@ var player_start_closet_posx = 0
 func finish_changescenes():
 	if transition_scene == true:
 		transition_scene = false
-		
-		match transition_destination:
-			"hallway":
-				
-				pass
-			
 	#if current_scene == "ti_lab":
 		#current_scene = "hallway"
 	#else :

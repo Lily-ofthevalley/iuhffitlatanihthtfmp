@@ -27,14 +27,8 @@ func change_scene():
 		match global.transition_destination:
 			"hallway":
 				get_tree().change_scene_to_file("res://scenes/hallway.tscn")
-				global.finish_changescenes()
 				
 			"ti_lab":
 				get_tree().change_scene_to_file("res://scenes/ti_lab.tscn")
-				global.finish_changescenes()
-		#if global.current_scene == "ti_lab":
-			#get_tree().change_scene_to_file("res://scenes/hallway.tscn")
-			#global.finish_changescenes()
-		#else:
-			#get_tree().change_scene_to_file("res://scenes/ti_lab.tscn")
-			#global.finish_changescenes()
+		global.transition_scene = false
+		

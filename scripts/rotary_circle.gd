@@ -6,7 +6,7 @@ class_name Circle
 enum Direction{CLOCKWISE=0, COUNTERCLOCKWISE=1}
 
 @export var knob_indicator: Line2D
-@export var knob_target: TextureRect
+@export var knob_target: Line2D
 @export var points = 15: # The amount of points the polygon circle should have.
 	get:
 		return points
@@ -16,7 +16,7 @@ enum Direction{CLOCKWISE=0, COUNTERCLOCKWISE=1}
 		update_points()
 
 @export var STEP = points / 15 # 1 step = 2 steps on the rotary encoder
-var knob_value = points + 3 # Should be the same as the relative value of the rotary encoder.
+var knob_value = 0 # Should be the same as the relative value of the rotary encoder.
 
 func update_points():
 	var pos_list: PackedVector2Array = PackedVector2Array()
@@ -34,14 +34,17 @@ func shift_knob(direction: Direction):
 	match direction:
 		Direction.CLOCKWISE:
 			knob_value += 1
-			knob_indicator.position = polygon[knob_value % points + STEP] * scale + position
+			print("Knob value: ", knob_value)
+			print("After: ", knob_value % (points+STEP))
+			knob_indicator.position = polygon[knob_value % (points+STEP)] * scale + position
 			_rotate_knob_indicator()
 		Direction.COUNTERCLOCKWISE:
 			knob_value -= 1
-			knob_indicator.position = polygon[knob_value % points + STEP] * scale + position
+			print("Knob value: ", knob_value)
+			print("After: ", knob_value % (points+STEP))
+			
+			knob_indicator.position = polygon[knob_value % (points+STEP)] * scale + position
 			_rotate_knob_indicator()
-	print(knob_value)
-	
 
 
 func _set_knob_indicator_relative_position(new_position: Vector2):
@@ -49,24 +52,32 @@ func _set_knob_indicator_relative_position(new_position: Vector2):
 
 func _rotate_knob_indicator():
 		# Rotate the indicator so it is perpendicular to the circle
-		var angle = (2 * PI / 360) * (360 / float(points + 3)) * (knob_value % points + STEP + 3) - PI/2 # Magic
+		var angle = (2 * PI / 360) * (360 / float(points + 3)) * (knob_value % (points+STEP) + STEP) - PI/2 # Magic
 		knob_indicator.rotation = angle
+
+func _rotate_knob_target(i: int):
+		# Rotate the target so it is perpendicular to the circle
+		var angle = (2 * PI / 360) * (360 / float(points + 3)) * (i % (points+STEP) + STEP) - PI/2 # Magic
+		knob_target.rotation = angle
 	
 func reset():
-	knob_value = -6
-	_set_knob_indicator_relative_position(polygon[points/4 - 6])
+	knob_value = -3
+	_set_knob_indicator_relative_position(polygon[knob_value % (points+STEP)])
 	_rotate_knob_indicator()
+
+func randomize_target():
+	var i = randi() % polygon.size()
+	var random_pos = polygon[i]
+	knob_target.position = random_pos * scale + position
+	_rotate_knob_target(i)
+
 
 func _ready() -> void:
 	# Get random point, and put the marker there
-	var random_pos = polygon[randi() % polygon.size()]
-	knob_target.position = random_pos * scale + position
-	# TODO: calibrate Arduino as well.
+	randomize_target()
 	reset()
-	#while true:
-		#for i in range(40*200):
-			#print(i % 40)
-			#print(i)
-			#await get_tree().create_timer(0.05).timeout
-			#knob_value = i % 40
-			#shift_knob(Direction.COUNTERCLOCKWISE)
+
+
+func _process(delta: float) -> void:
+	if knob_indicator.position == knob_target.position:
+		randomize_target()

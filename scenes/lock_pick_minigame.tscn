@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://j7vh753u78ww"]
+[gd_scene load_steps=4 format=3 uid="uid://j7vh753u78ww"]
 
 [ext_resource type="Script" uid="uid://dfi3ngv3ucph7" path="res://scripts/lock_pick_minigame.gd" id="1_6l8rx"]
 [ext_resource type="Script" uid="uid://bg630f0t7sug" path="res://scripts/rotary_circle.gd" id="1_mx1kh"]
-[ext_resource type="Texture2D" uid="uid://bi1wny44amkja" path="res://icon.svg" id="2_71bmf"]
-[ext_resource type="Texture2D" uid="uid://buqjvdlsgmn7x" path="res://art/sprites/characters/bee.webp" id="3_w4kd2"]
 [ext_resource type="PackedScene" uid="uid://c1lvguo6cmrcu" path="res://scenes/arduino.tscn" id="5_qkc0m"]
 
 [node name="LockPickMinigame" type="Control"]
@@ -32,42 +30,23 @@ grow_vertical = 2
 [node name="Circle" type="Polygon2D" parent="Panel" node_paths=PackedStringArray("knob_indicator", "knob_target")]
 position = Vector2(261.99994, 254)
 scale = Vector2(121.68346, 121.68346)
-polygon = PackedVector2Array(0.87, -0.5, 0.98, -0.17, 0.98, 0.17, 0.87, 0.5, 0.64, 0.77, 0.34, 0.94, 0, 1, -0.34, 0.94, -0.64, 0.77, -0.87, 0.5, -0.98, 0.17, -0.98, -0.17, -0.87, -0.5, -0.64, -0.77, -0.34, -0.94, 0, -1, 0.34, -0.94, 0.64, -0.77)
+polygon = PackedVector2Array(0.84, -0.55, 0.97, -0.25, 1, 0.08, 0.92, 0.4, 0.74, 0.68, 0.48, 0.88, 0.16, 0.99, -0.16, 0.99, -0.48, 0.88, -0.74, 0.68, -0.92, 0.4, -1, 0.08, -0.97, -0.25, -0.84, -0.55, -0.61, -0.79, -0.32, -0.95, 0, -1, 0.32, -0.95, 0.61, -0.79)
 script = ExtResource("1_mx1kh")
-knob_indicator = NodePath("../KnobIndicator2")
+knob_indicator = NodePath("../KnobIndicaor")
 knob_target = NodePath("../KnobTarget")
+points = 16
 STEP = 3
 
-[node name="KnobTarget" type="TextureRect" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07700001
-anchor_top = 0.123
-anchor_right = 0.112
-anchor_bottom = 0.22000001
-offset_left = 297.06534
-offset_top = 97.08174
-offset_right = 296.60535
-offset_bottom = 96.78953
-texture = ExtResource("2_71bmf")
-expand_mode = 1
-
-[node name="KnobIndicator" type="TextureRect" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07700001
-anchor_top = 0.123
-anchor_right = 0.112
-anchor_bottom = 0.22000001
-offset_left = -41.942005
-offset_top = -63.722
-offset_right = 15.974525
-offset_bottom = 85.5704
-texture = ExtResource("3_w4kd2")
-expand_mode = 1
-
-[node name="KnobIndicator2" type="Line2D" parent="Panel"]
+[node name="KnobTarget" type="Line2D" parent="Panel"]
+position = Vector2(88, 83)
+rotation = -1.5707964
 points = PackedVector2Array(0, 0, 30, 0)
+default_color = Color(0, 18.892157, 0, 1)
+
+[node name="KnobIndicaor" type="Line2D" parent="Panel"]
+position = Vector2(261.99994, 132.31654)
+rotation = -1.5707964
+points = PackedVector2Array(0, 0, 20.06343, 0, 30, 0)
 default_color = Color(18.892157, 0, 0, 1)
 
 [node name="CalibrateButton" type="Button" parent="Panel"]

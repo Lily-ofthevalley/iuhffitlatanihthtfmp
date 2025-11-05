@@ -15,6 +15,7 @@ var _last_data: String =  \"\"
 var serial: GdSerial
 var poll_timer : Timer
 @export var serial_port: String
+var first_time = true
 
 func _ready() -> void:
 	# Create serial instance
@@ -103,6 +104,10 @@ func update():
 		#print_debug(\"Knob relative value: \", _knob_relative_value)
 		
 	_last_data = response
+	
+	if first_time:
+		calibrate_knob()
+		first_time = false
 "
 
 [node name="Arduino" type="Node"]

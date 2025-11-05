@@ -4,7 +4,7 @@ extends Control
 
 func _ready():
 	$Backgroud/Moving.play("move-loop")
-	$Settings/ArduinoInput.text = global.arduino_port
+	$Settings/Configs/ArduinoInput.text = global.arduino_port
 
 func _on_start_pressed() -> void:
 	var loading_screen = load("res://scenes/loading_screen.tscn")
@@ -36,6 +36,6 @@ func _on_settings_close_requested() -> void:
 
 
 func _on_settings_save() -> void:
-	var new_text = $Settings/ArduinoInput.text
+	var new_text = $Settings/Configs/ArduinoInput.text
 	global.arduino_port = new_text
 	$Settings.hide()

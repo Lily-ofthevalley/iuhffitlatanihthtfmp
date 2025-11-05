@@ -436,14 +436,13 @@ var _knob_zero_offset: int = 0 # The absolute offset from zero, we use this to c
 var _last_data: String =  \"\"
 var serial: GdSerial
 var poll_timer : Timer
-@export var serial_port: String
 
 func _ready() -> void:
 	# Create serial instance
 	serial = GdSerial.new()
 	
 	# Configure and open port
-	serial.set_port(serial_port)
+	serial.set_port(global.arduino_port)
 	serial.set_baud_rate(115200)
 	serial.set_timeout(10)
 	
@@ -568,4 +567,3 @@ drag_vertical_enabled = true
 
 [node name="Arduino" type="Node" parent="."]
 script = SubResource("GDScript_qlg0r")
-serial_port = "/dev/ttyUSB0"

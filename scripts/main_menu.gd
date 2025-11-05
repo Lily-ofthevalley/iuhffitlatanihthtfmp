@@ -1,5 +1,6 @@
 extends Control
 
+@onready var credits_scene = preload("res://scenes/credits.tscn")
 
 func _ready():
 	$Backgroud/Moving.play("move-loop")
@@ -26,4 +27,4 @@ func _on_settings_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
-	pass
+	get_tree().change_scene_to_packed(credits_scene)

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal quest_menu_closed
+@onready var text: RichTextLabel = $quest_dialogue/Panel/Text
 
 var dialogue = []
 var current_dialogue_id = 0
@@ -16,6 +17,10 @@ var quest2_dialogue_completed = false
 var quest3_completed = false
 var quest3_dialogue_active = false
 var quest3_dialogue_completed = false
+
+var letters_per_second: float = 20
+var dialogue_size: int = 0
+var tween: Tween
 
 var stick = 0
 
@@ -76,6 +81,9 @@ func _input(event: InputEvent) -> void: #Listents for input of enter key to go t
 		next_script()
 		
 func next_script(): #Shows next text or closes dialogue
+	if tween != null:
+		tween.kill()
+		
 	current_dialogue_id += 1
 	if current_dialogue_id >= len(dialogue):
 		if quest1_dialogue_active:
@@ -90,6 +98,12 @@ func next_script(): #Shows next text or closes dialogue
 	
 	$quest_dialogue/Panel/Name.text = dialogue[current_dialogue_id]["name"]
 	$quest_dialogue/Panel/Text.text = dialogue[current_dialogue_id]["text"]
+	
+	text.visible_characters = 0
+	dialogue_size = text.get_total_character_count()
+	
+	tween = create_tween()
+	tween.tween_property(text, "visible_characters", dialogue_size, dialogue_size / letters_per_second)
 
 # V Quest Dialogue functions V
 func quest1_chat():

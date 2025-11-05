@@ -1,4 +1,5 @@
-[gd_scene load_steps=66 format=3 uid="uid://bgrajflyw8801"]
+
+[gd_scene load_steps=60 format=3 uid="uid://c13025l3bph2n"]
 
 [ext_resource type="Texture2D" uid="uid://dxou5f51sp0jf" path="res://art/sprites/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b5586eh2m4v6i" path="res://scripts/player.gd" id="1_g2els"]
@@ -682,3 +683,4 @@ offset_bottom = 633.0
 theme_override_fonts/font = ExtResource("7_smehm")
 theme_override_font_sizes/font_size = 14
 text = "Movement"
+

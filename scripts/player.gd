@@ -2,12 +2,20 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var inv: Inv
 const PLAYER_SPEED = 100.0
 enum Direction {Left, Right, Up, Down}
 var direction = Direction.Right
 
-func _ready():
+
+# This is needed to make scene switching work apparantly
+func player():
+	pass
+
+func dead_on_ground():
+	$AnimatedSprite2D.speed_scale = 0
 	$AnimatedSprite2D.play("death")
+
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
@@ -74,3 +82,15 @@ func handle_movement_animation(direction: Direction, moving: bool = true):
 				anim.play("back_walk")
 			else:
 				anim.play("back_idle")
+
+func collect(item):
+	inv.insert(item)
+	
+
+
+func _on_opening_cutscene_finish() -> void:
+	$AnimatedSprite2D.speed_scale = 1
+	await get_tree().create_timer(5).timeout
+	$OpeningCutscene.close()
+
+	pass # Replace with function body.

@@ -1,11 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcf8iuohsogbk"]
+[gd_scene load_steps=12 format=3 uid="uid://dcf8iuohsogbk"]
 
 [ext_resource type="Script" uid="uid://bf7dhirmyqpwl" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://d18mi5urbw3l1" path="res://art/Cute_Fantasy_Free/Outdoor decoration/House.png" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://ld02a6vbj675" path="res://art/TI_Lab.png" id="2_wu84c"]
+[ext_resource type="PackedScene" uid="uid://6ix5bbdr1566" path="res://scenes/noisy_button.tscn" id="3_bqqt6"]
+[ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="4_wu84c"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekxnf"]
-texture = ExtResource("1_l6cm7")
-modulate_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
+[sub_resource type="Animation" id="Animation_8ln24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-794.04724, -458)]
+}
+
+[sub_resource type="Animation" id="Animation_wu84c"]
+resource_name = "move"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.510479, 10, 14.738467, 19.248947, 24.394705, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-794.04724, -458), Vector2(-421, -187), Vector2(-136, -159), Vector2(-786, -514), Vector2(-1439, -247), Vector2(-1135, -791), Vector2(-407, -796)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ln24"]
+_data = {
+&"RESET": SubResource("Animation_8ln24"),
+&"move-loop": SubResource("Animation_wu84c")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.39439616, 0.5893435, 0.9669823, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(0.10834242, 0.28942397, 0.6824411, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.2031976, 0.42350727, 0.8900198, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_wu84c"]
+base_font = ExtResource("4_wu84c")
+variation_opentype = {
+2003265652: 700
+}
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -39,58 +104,105 @@ text = "wij zijn squad Scriptkiddies
 bla
 bla bla"
 
-[node name="Backgroud" type="Panel" parent="."]
+[node name="Backgroud" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -794.04724
+offset_top = -458.0
+offset_right = 814.047
+offset_bottom = 486.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ekxnf")
+texture = ExtResource("2_wu84c")
+
+[node name="Moving" type="AnimationPlayer" parent="Backgroud"]
+libraries = {
+&"": SubResource("AnimationLibrary_8ln24")
+}
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -169.75
-offset_top = -104.0
-offset_right = 169.75
-offset_bottom = 77.0
+anchors_preset = -1
+anchor_left = 0.35300002
+anchor_top = 0.526
+anchor_right = 0.647
+anchor_bottom = 0.952
+offset_left = -0.40600586
+offset_top = 0.15197754
+offset_right = 0.40600586
+offset_bottom = 0.104003906
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
 
-[node name="Start" type="Button" parent="Buttons"]
+[node name="Start" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Start"
 
-[node name="Info" type="Button" parent="Buttons"]
+[node name="AboutUs" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "Info"
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
+text = "Ontmoet de Squad"
 
-[node name="ExitGame" type="Button" parent="Buttons"]
+[node name="Instellingen" parent="Buttons" instance=ExtResource("3_bqqt6")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
+text = "Instellingen"
+
+[node name="Credits" parent="Buttons" instance=ExtResource("3_bqqt6")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
+text = "Credits
+"
+
+[node name="Sluiten" parent="Buttons" instance=ExtResource("3_bqqt6")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Sluiten"
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -237.5
-offset_top = 141.0
-offset_right = 237.5
-offset_bottom = 209.0
+offset_left = -340.0
+offset_right = 340.0
+offset_bottom = 256.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 49
-text = "iuhffitlatanihthtfmp"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_wu84c")
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+text = "[center]I woke up high from fumes
+in the tech lab at school
+and now I have to hurry
+to finish my project[/center]"
+fit_content = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-407.00192, -796.00037)
 
 [connection signal="close_requested" from="Popup" to="." method="_on_popup_close"]
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Buttons/Info" to="." method="_on_info_pressed"]
-[connection signal="pressed" from="Buttons/ExitGame" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Buttons/AboutUs" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="Buttons/Instellingen" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Buttons/Sluiten" to="." method="_on_exit_pressed"]

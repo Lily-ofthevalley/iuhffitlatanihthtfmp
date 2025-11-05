@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var scene_transition = $SceneTransitionAnimation/AnimationPlayer
 
+func _ready():
+	$ButtonHint.visible = false
+
 func _process(_delta):
 	change_scene()
 
@@ -10,21 +13,27 @@ func _enter_tree() -> void:
 		$player.dead_on_ground()
 		$player/OpeningCutscene.play(get_tree().create_timer(2.0))
 
-func onClosetTransitionPointEntry(body) :
+func transitionToHallway(body) :
 	if body.has_method("player"):
+		$ButtonHint.visible = true
 		global.transition_scene = true
+		global.transition_destination = "hallway"
 
-func onClosetTransitionPointExit(body) :
+func onDoorTransitionPointExit(body) :
 	if body.has_method("player"):
+		$ButtonHint.visible = false
 		global.transition_scene = false
 
 func change_scene():
-	if global.transition_scene == true:
+	if global.transition_scene == true && Input.is_action_just_pressed("e"):
 		scene_transition.play("fade_in")
 		await get_tree().create_timer(0.5).timeout
-		if global.current_scene == "ti_lab":
-			get_tree().change_scene_to_file("res://scenes/hallway.tscn")
-			global.finish_changescenes()
-		else:
-			get_tree().change_scene_to_file("res://scenes/ti_lab.tscn")
-			global.finish_changescenes()
+
+		match global.transition_destination:
+			"hallway":
+				get_tree().change_scene_to_file("res://scenes/hallway.tscn")
+				
+			"ti_lab":
+				get_tree().change_scene_to_file("res://scenes/ti_lab.tscn")
+		global.transition_scene = false
+		

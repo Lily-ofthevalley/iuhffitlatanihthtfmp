@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://obq2ig2345ph"]
+[gd_scene load_steps=5 format=3 uid="uid://obq2ig2345ph"]
 
-[ext_resource type="Script" uid="uid://bkqq6rdtyvqfb" path="res://quest/quest_log.gd" id="1_7ntsi"]
+[ext_resource type="Script" uid="uid://csuqobhuskvu0" path="res://quest/quest_log.gd" id="1_7ntsi"]
+[ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="2_ajx2v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecpay"]
 bg_color = Color(0, 0, 0, 0)
@@ -43,6 +44,7 @@ offset_left = -1.0
 offset_top = 2.0
 offset_right = 207.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("2_ajx2v")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ntsi")
 text = "Quest"
@@ -57,5 +59,6 @@ offset_left = 16.0
 offset_top = 50.0
 offset_right = 196.0
 offset_bottom = 134.0
+theme_override_fonts/normal_font = ExtResource("2_ajx2v")
 text = "Text"
 horizontal_alignment = 1

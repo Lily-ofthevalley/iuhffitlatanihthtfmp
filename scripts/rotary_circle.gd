@@ -4,8 +4,10 @@ extends Polygon2D
 class_name Circle
 # https://forum.godotengine.org/t/how-to-create-a-circle-with-line2d/37813
 enum Direction{CLOCKWISE=0, COUNTERCLOCKWISE=1}
+signal solve_minigame
 
 @export var knob_indicator: Line2D
+@export var lock: Sprite2D
 @export var knob_target: Line2D
 @export var points = 15: # The amount of points the polygon circle should have.
 	get:
@@ -17,6 +19,7 @@ enum Direction{CLOCKWISE=0, COUNTERCLOCKWISE=1}
 
 @export var STEP = points / 15 # 1 step = 2 steps on the rotary encoder
 var knob_value = 0 # Should be the same as the relative value of the rotary encoder.
+var solves = 0
 
 func update_points():
 	var pos_list: PackedVector2Array = PackedVector2Array()
@@ -34,15 +37,14 @@ func shift_knob(direction: Direction):
 	match direction:
 		Direction.CLOCKWISE:
 			knob_value += 1
-			print("Knob value: ", knob_value)
-			print("After: ", knob_value % (points+STEP))
+			#print("Knob value: ", knob_value)
+			#print("After: ", knob_value % (points+STEP))
 			knob_indicator.position = polygon[knob_value % (points+STEP)] * scale + position
 			_rotate_knob_indicator()
 		Direction.COUNTERCLOCKWISE:
 			knob_value -= 1
-			print("Knob value: ", knob_value)
-			print("After: ", knob_value % (points+STEP))
-			
+			#print("Knob value: ", knob_value)
+			#print("After: ", knob_value % (points+STEP))
 			knob_indicator.position = polygon[knob_value % (points+STEP)] * scale + position
 			_rotate_knob_indicator()
 
@@ -80,4 +82,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if knob_indicator.position == knob_target.position:
+		solves += 1
+		if solves == 6:
+			solve_minigame.emit()
+			var open_lock = load('res://art/lock-open.png')
+			lock.texture = open_lock
 		randomize_target()

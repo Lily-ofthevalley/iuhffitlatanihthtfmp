@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://j7vh753u78ww"]
+[gd_scene load_steps=7 format=3 uid="uid://j7vh753u78ww"]
 
 [ext_resource type="Script" uid="uid://dfi3ngv3ucph7" path="res://scripts/lock_pick_minigame.gd" id="1_6l8rx"]
 [ext_resource type="Script" uid="uid://bg630f0t7sug" path="res://scripts/rotary_circle.gd" id="1_mx1kh"]
+[ext_resource type="Texture2D" uid="uid://bl4k8ciij2gkj" path="res://art/lock-closed.png" id="2_6l8rx"]
+[ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="4_qkc0m"]
 [ext_resource type="PackedScene" uid="uid://c1lvguo6cmrcu" path="res://scenes/arduino.tscn" id="5_qkc0m"]
+
+[sub_resource type="FontVariation" id="FontVariation_vcisi"]
+base_font = ExtResource("4_qkc0m")
+variation_opentype = {
+2003265652: 700
+}
 
 [node name="LockPickMinigame" type="Control"]
 layout_mode = 3
@@ -16,37 +24,44 @@ script = ExtResource("1_6l8rx")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.259
-anchor_top = 0.10300001
-anchor_right = 0.74100006
-anchor_bottom = 0.897
-offset_left = -0.36801147
-offset_top = 0.2559967
-offset_right = 0.36791992
-offset_bottom = -0.25598145
+anchor_left = 0.17500001
+anchor_top = 0.068
+anchor_right = 0.82500005
+anchor_bottom = 0.93200004
+offset_left = 0.3999939
+offset_top = -0.06400299
+offset_right = -0.4000244
+offset_bottom = 0.063964844
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Circle" type="Polygon2D" parent="Panel" node_paths=PackedStringArray("knob_indicator", "knob_target")]
-position = Vector2(261.99994, 254)
-scale = Vector2(121.68346, 121.68346)
+[node name="Lock" type="Sprite2D" parent="Panel"]
+position = Vector2(348, 307)
+texture = ExtResource("2_6l8rx")
+
+[node name="Circle" type="Polygon2D" parent="Panel" node_paths=PackedStringArray("knob_indicator", "lock", "knob_target")]
+position = Vector2(350, 319)
+scale = Vector2(59.137413, 59.137413)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(0.84, -0.55, 0.97, -0.25, 1, 0.08, 0.92, 0.4, 0.74, 0.68, 0.48, 0.88, 0.16, 0.99, -0.16, 0.99, -0.48, 0.88, -0.74, 0.68, -0.92, 0.4, -1, 0.08, -0.97, -0.25, -0.84, -0.55, -0.61, -0.79, -0.32, -0.95, 0, -1, 0.32, -0.95, 0.61, -0.79)
 script = ExtResource("1_mx1kh")
 knob_indicator = NodePath("../KnobIndicaor")
+lock = NodePath("../Lock")
 knob_target = NodePath("../KnobTarget")
 points = 16
 STEP = 3
 
 [node name="KnobTarget" type="Line2D" parent="Panel"]
-position = Vector2(88, 83)
-rotation = -1.5707964
+position = Vector2(336.53064, 422.46667)
+rotation = 1.7361434
 points = PackedVector2Array(0, 0, 30, 0)
 default_color = Color(0, 18.892157, 0, 1)
 
 [node name="KnobIndicaor" type="Line2D" parent="Panel"]
-position = Vector2(261.99994, 132.31654)
+position = Vector2(93.99997, 76.22592)
 rotation = -1.5707964
-points = PackedVector2Array(0, 0, 20.06343, 0, 30, 0)
+scale = Vector2(1.1987672, 1)
+points = PackedVector2Array(0, 0, 50, 0)
 default_color = Color(18.892157, 0, 0, 1)
 
 [node name="CalibrateButton" type="Button" parent="Panel"]
@@ -62,6 +77,24 @@ offset_right = 0.13195801
 offset_bottom = -0.12000275
 text = "Calibrate"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10300001
+anchor_top = 0.171
+anchor_right = 0.897
+anchor_bottom = 0.266
+offset_left = -0.044006348
+offset_top = 0.23999786
+offset_right = 0.044006348
+offset_bottom = 8.039993
+grow_horizontal = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_vcisi")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Oh nee! De kluis zit op slot! Gebruik je lockpick tool om de kluis te kraken.[/center]"
+
 [node name="Arduino" parent="." instance=ExtResource("5_qkc0m")]
 
+[connection signal="solve_minigame" from="Panel/Circle" to="." method="_on_circle_solve_minigame"]
 [connection signal="pressed" from="Panel/CalibrateButton" to="." method="_on_calibrate_button_pressed"]

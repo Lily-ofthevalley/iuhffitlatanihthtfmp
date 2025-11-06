@@ -1,51 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://wt24l3oi5q1w"]
+[gd_scene load_steps=5 format=3 uid="uid://wt24l3oi5q1w"]
 
 [ext_resource type="Script" uid="uid://bw7a25u144xvb" path="res://scripts/inv_ui.gd" id="1_0h3ps"]
-[ext_resource type="Texture2D" uid="uid://cywipwe8mfw4q" path="res://art/Cute_Fantasy_Free/Tiles/FarmLand_Tile.png" id="2_1wvso"]
+[ext_resource type="Texture2D" uid="uid://c4h375sa25iqo" path="res://art/sprites/inventory/background.png" id="2_0h3ps"]
 [ext_resource type="PackedScene" uid="uid://cnnthk58xkrru" path="res://scenes/inv_ui_slot.tscn" id="3_spbc7"]
+[ext_resource type="Texture2D" uid="uid://gym6qanfvctq" path="res://art/sprites/inventory/loading lines.png" id="4_1wvso"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_0h3ps")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -206.0
-offset_top = -260.0
-offset_right = 206.0
+anchors_preset = -1
+anchor_left = 0.52900004
+anchor_top = 0.851
+anchor_right = 0.52900004
+anchor_bottom = 0.851
+offset_left = -239.40808
+offset_top = -394.448
+offset_right = -169.40808
+offset_bottom = -346.448
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_1wvso")
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
-patch_margin_bottom = 6
+scale = Vector2(6.66, 6.66)
+texture = ExtResource("2_0h3ps")
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
 layout_mode = 1
-offset_right = 56.0
-offset_bottom = 36.0
-scale = Vector2(6.66, 6.66)
-pivot_offset = Vector2(-3, -2)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.045044
+offset_top = -19.195196
+offset_right = 35.0
+offset_bottom = 24.000004
+grow_horizontal = 2
+grow_vertical = 2
 columns = 3
 
 [node name="inv_UI_slot" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 
 [node name="inv_UI_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 
 [node name="inv_UI_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 
 [node name="inv_UI_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 
 [node name="inv_UI_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 
 [node name="inv_UI_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("3_spbc7")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(35.01352, 23.999514)
+scale = Vector2(0.97259754, 1)
+texture = ExtResource("4_1wvso")

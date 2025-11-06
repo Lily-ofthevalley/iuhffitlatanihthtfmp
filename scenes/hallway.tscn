@@ -9,9 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txc3n"]
 size = Vector2(13.016846, 9.215088)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k2v8"]
-size = Vector2(58, 28)
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1k2v8")
 

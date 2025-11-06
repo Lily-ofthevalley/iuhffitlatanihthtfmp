@@ -1,5 +1,7 @@
 extends Node
 
+var arduino_port: String = "/dev/ttyUSB0"
+
 var current_scene = "ti_lab"
 var transition_destination = ""
 

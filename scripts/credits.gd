@@ -10,6 +10,8 @@ func sum(accum, number):
 	return accum + number
 
 func _process(_delta: float):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	# Inspired by Minecraft's credit screen
 	var scroll_multiplier: float = [
 		Input.is_key_pressed(KEY_SPACE),

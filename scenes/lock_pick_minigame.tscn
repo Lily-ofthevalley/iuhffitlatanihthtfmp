@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://depprr0ef3lfb"]
 
 [ext_resource type="Script" path="res://scripts/lock_pick_minigame.gd" id="1_6l8rx"]
-[ext_resource type="Script" path="res://scripts/rotary_circle.gd" id="1_mx1kh"]
+[ext_resource type="Script" uid="uid://bg630f0t7sug" path="res://scripts/rotary_circle.gd" id="1_mx1kh"]
 [ext_resource type="Texture2D" uid="uid://bl4k8ciij2gkj" path="res://art/lock-closed.png" id="2_6l8rx"]
 [ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="4_qkc0m"]
 [ext_resource type="PackedScene" path="res://scenes/arduino.tscn" id="5_qkc0m"]

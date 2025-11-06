@@ -17,10 +17,8 @@ func _ready():
 func handle_input():
 	if Input.is_action_pressed("ui_right") && !grappled:
 		claw.position.x += SPEED
-		claw.velocity.y = 0
 	elif Input.is_action_pressed("ui_left") && !grappled:
 		claw.position.x -= 5
-		claw.velocity.y = 0
 	elif Input.is_action_pressed("ui_down") && !grappled:
 		claw.position.y += SPEED
 	elif Input.is_action_pressed("ui_up"):

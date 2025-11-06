@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://bdm05csupotf1"]
+
+[ext_resource type="Script" uid="uid://dy57c3y0aifxq" path="res://scripts/inventory_items.gd" id="1_ooind"]
+[ext_resource type="Texture2D" uid="uid://dpc58kepa3ti4" path="res://art/sprites/items/compas.png" id="2_ooind"]
+
+[resource]
+script = ExtResource("1_ooind")
+name = "Kompas"
+texture = ExtResource("2_ooind")
+metadata/_custom_type_script = "uid://dy57c3y0aifxq"

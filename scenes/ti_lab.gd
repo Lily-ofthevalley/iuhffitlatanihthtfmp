@@ -4,6 +4,7 @@ func _ready():
 	$ButtonHint.visible = false
 	
 func _process(_delta):
+	testfunc()
 	change_scene()
 
 func _enter_tree() -> void:
@@ -31,4 +32,10 @@ func change_scene():
 			"ti_lab":
 				get_tree().change_scene_to_file("res://scenes/ti_lab.tscn")
 		global.transition_scene = false
+		
+func testfunc() :
+	var test = "test";
+	if (Input.is_action_just_pressed("chat")):
+		print("true", global.checkPlayerinv("kompas", test));
+		
 		

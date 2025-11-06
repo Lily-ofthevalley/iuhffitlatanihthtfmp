@@ -35,9 +35,10 @@ func _process(delta: float) -> void: #Checks if the quests have been completed
 		if stick == 0:
 			QuestManager.quest1_active = false
 			emit_signal("quest1_activity_status", false)
-			quest1_completed = true
-			quest1_dialogue_active = false
-			print("quest 1 compleet: ", quest1_completed)
+			if (global.checkPlayerinv("kompas", QuestManager.quest1_active)):
+				quest1_completed = true
+				quest1_dialogue_active = false
+				print("quest 1 compleet: ", quest1_completed)
 	if QuestManager.quest2_active:
 		if stick == 0:
 			QuestManager.quest2_active = false

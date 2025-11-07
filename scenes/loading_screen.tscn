@@ -4,6 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://c1qfq82pd8vdv" path="res://art/background/loading_screen.jpg" id="2_hprjd"]
 [ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="3_ku3bi"]
 
+[sub_resource type="FontVariation" id="FontVariation_5phy8"]
+base_font = ExtResource("3_ku3bi")
+variation_opentype = {
+2003265652: 700
+}
+
 [sub_resource type="FontVariation" id="FontVariation_ku3bi"]
 base_font = ExtResource("3_ku3bi")
 variation_opentype = {
@@ -21,12 +27,6 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hprjd"]
 bg_color = Color(0.003921569, 0.8235294, 0.9529412, 1)
-
-[sub_resource type="FontVariation" id="FontVariation_5phy8"]
-base_font = ExtResource("3_ku3bi")
-variation_opentype = {
-2003265652: 700
-}
 
 [node name="LoadingScreen" type="CanvasLayer"]
 script = ExtResource("1_ep5rh")
@@ -49,25 +49,6 @@ grow_vertical = 2
 texture = ExtResource("2_hprjd")
 expand_mode = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = -1
-anchor_left = 0.60300004
-anchor_top = 0.795
-anchor_right = 0.9110001
-anchor_bottom = 0.915
-offset_left = 0.3439331
-offset_top = -0.16003418
-offset_right = 0.5279541
-offset_bottom = 0.079956055
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("FontVariation_ku3bi")
-theme_override_font_sizes/font_size = 43
-theme_override_styles/background = SubResource("StyleBoxFlat_ku3bi")
-theme_override_styles/fill = SubResource("StyleBoxFlat_hprjd")
-max_value = 1.0
-
 [node name="Label" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.039
@@ -83,3 +64,43 @@ grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_5phy8")
 theme_override_font_sizes/font_size = 96
 text = "IUHFFITLATANIHTHTFMP"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_top = 0.76000005
+anchor_right = 1.0
+anchor_bottom = 0.845
+offset_top = 0.019958496
+offset_bottom = -0.05999756
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TiLabProgresBar" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ku3bi")
+theme_override_font_sizes/font_size = 43
+theme_override_styles/background = SubResource("StyleBoxFlat_ku3bi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hprjd")
+max_value = 1.0
+
+[node name="HallwayProgressBar" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ku3bi")
+theme_override_font_sizes/font_size = 43
+theme_override_styles/background = SubResource("StyleBoxFlat_ku3bi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hprjd")
+max_value = 1.0
+
+[node name="OutdoorProgressBar" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ku3bi")
+theme_override_font_sizes/font_size = 43
+theme_override_styles/background = SubResource("StyleBoxFlat_ku3bi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hprjd")
+max_value = 1.0

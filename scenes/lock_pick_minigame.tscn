@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://j7vh753u78ww"]
+[gd_scene load_steps=7 format=3 uid="uid://depprr0ef3lfb"]
 
-[ext_resource type="Script" uid="uid://dfi3ngv3ucph7" path="res://scripts/lock_pick_minigame.gd" id="1_6l8rx"]
+[ext_resource type="Script" path="res://scripts/lock_pick_minigame.gd" id="1_6l8rx"]
 [ext_resource type="Script" uid="uid://bg630f0t7sug" path="res://scripts/rotary_circle.gd" id="1_mx1kh"]
 [ext_resource type="Texture2D" uid="uid://bl4k8ciij2gkj" path="res://art/lock-closed.png" id="2_6l8rx"]
 [ext_resource type="FontFile" uid="uid://bfj4hg3qtd7ld" path="res://art/fonts/PixelifySans-VariableFont_wght.ttf" id="4_qkc0m"]
-[ext_resource type="PackedScene" uid="uid://c1lvguo6cmrcu" path="res://scenes/arduino.tscn" id="5_qkc0m"]
+[ext_resource type="PackedScene" path="res://scenes/arduino.tscn" id="5_qkc0m"]
 
 [sub_resource type="FontVariation" id="FontVariation_vcisi"]
 base_font = ExtResource("4_qkc0m")
@@ -52,13 +52,13 @@ points = 16
 STEP = 3
 
 [node name="KnobTarget" type="Line2D" parent="Panel"]
-position = Vector2(336.53064, 422.46667)
-rotation = 1.7361434
+position = Vector2(306.2383, 359.21344)
+rotation = 2.3975313
 points = PackedVector2Array(0, 0, 30, 0)
 default_color = Color(0, 18.892157, 0, 1)
 
 [node name="KnobIndicaor" type="Line2D" parent="Panel"]
-position = Vector2(93.99997, 76.22592)
+position = Vector2(350, 259.86258)
 rotation = -1.5707964
 scale = Vector2(1.1987672, 1)
 points = PackedVector2Array(0, 0, 50, 0)

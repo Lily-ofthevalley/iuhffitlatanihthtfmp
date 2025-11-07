@@ -81,6 +81,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_SPACE):
+		solve_minigame.emit()
+		var open_lock = load('res://art/lock-open.png')
+		lock.texture = open_lock
+	
 	if knob_indicator.position == knob_target.position:
 		solves += 1
 		if solves == 6:

@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://5e80soabewdm"]
+
+[ext_resource type="Script" uid="uid://dro1kfuo67u6g" path="res://scripts/grabbing_minigame.gd" id="1_5n2xg"]
+[ext_resource type="Texture2D" uid="uid://cl2x2p3undpj8" path="res://art/bonesmash.jpg" id="1_mixx8"]
+[ext_resource type="Texture2D" uid="uid://tmim1nab8m5b" path="res://art/claw.png" id="2_ci3da"]
+[ext_resource type="Texture2D" uid="uid://14tayfpfy8n2" path="res://art/robotje.png" id="3_lvk18"]
+[ext_resource type="PackedScene" uid="uid://cpsy2648syrei" path="res://scenes/arduino.tscn" id="5_o6xyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5n2xg"]
+size = Vector2(101, 192)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5n2xg"]
+
+[node name="GrabbingMinigame" type="Control" node_paths=PackedStringArray("claw", "robot", "cable", "arduino")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5n2xg")
+claw = NodePath("Claw")
+robot = NodePath("Robot")
+cable = NodePath("Cable")
+arduino = NodePath("Arduino")
+
+[node name="Trash" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.037
+anchor_top = -0.057000004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.55869293
+offset_top = -5.063999
+offset_bottom = 6.0
+texture = ExtResource("1_mixx8")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(176.29413, -0.35756302)
+scale = Vector2(0.68235296, 0.99127907)
+points = PackedVector2Array(0, 0, 12, -1, 24, 16, 37, 30, 46, 46, 57, 56, 108.01724, 146.63637, 162, 211, 156, 200, 181.29309, 269.7097, 242.84482, 369.58066, 235.51724, 434.1437, 297, 540, 346, 593, 421, 605, 482, 604, 528, 604, 563, 604, 651, 603, 727, 607, 808, 588, 906, 496, 960.94836, 359.49268, 978, 261, 1025, 44)
+width = 40.0
+default_color = Color(0.35941187, 0.5432869, 1, 1)
+
+[node name="Claw" type="CharacterBody2D" parent="."]
+position = Vector2(518, 140)
+
+[node name="Claw" type="Sprite2D" parent="Claw"]
+position = Vector2(0, -93)
+scale = Vector2(0.14477032, 0.19204931)
+texture = ExtResource("2_ci3da")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Claw"]
+position = Vector2(0, -93)
+shape = SubResource("RectangleShape2D_5n2xg")
+
+[node name="CableStart" type="Marker2D" parent="Claw"]
+position = Vector2(0, -159)
+
+[node name="Robot" type="CharacterBody2D" parent="."]
+position = Vector2(686, 483.99997)
+rotation = -0.5323255
+scale = Vector2(13.242388, 11.92109)
+
+[node name="Sprite" type="Sprite2D" parent="Robot"]
+texture = ExtResource("3_lvk18")
+
+[node name="Area2D" type="Area2D" parent="Robot"]
+position = Vector2(1.1444092e-05, 1.0638275)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robot/Area2D"]
+position = Vector2(-3.8146973e-06, 0)
+shape = SubResource("CircleShape2D_5n2xg")
+
+[node name="Cable" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 1, -17)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Arduino" parent="." instance=ExtResource("5_o6xyy")]
+
+[connection signal="body_shape_entered" from="Robot/Area2D" to="." method="_on_robot_shape_entered"]

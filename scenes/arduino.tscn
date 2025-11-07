@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1lvguo6cmrcu"]
+[gd_scene load_steps=2 format=3 uid="uid://cpsy2648syrei"]
 
 [sub_resource type="GDScript" id="GDScript_qlg0r"]
 script/source = "extends Node
 
 class_name ArduinoInterface
 var _compass: Dictionary = {\"enabled\": true, \"angle\": 0.0}
-
+var controller: Dictionary = {\"up\": false, \"down\": false, \"left\": false, \"right\": false, \"select\": false}
 var _knob_absolute_value: int = 0
 var _knob_relative_value: int = 0
 var _knob_zero_offset: int = 0 # The absolute offset from zero, we use this to calibrate the rotary encoder
@@ -35,7 +35,7 @@ func _ready() -> void:
 		# Create a timer so we can periodically sync with the Arduino
 		poll_timer = Timer.new()
 		poll_timer.autostart = true
-		poll_timer.wait_time = 0.005
+		poll_timer.wait_time = 0.05
 		poll_timer.connect(\"timeout\", Callable(self, \"update\"))
 		self.add_child(poll_timer)
 	else:
@@ -77,12 +77,14 @@ func update():
 	}))
 	
 	while serial.bytes_available() == 0:
-		await get_tree().create_timer(0.001).timeout
+		await get_tree().create_timer(0.5).timeout
 	
 	var response = serial.readline()
 	
 	if response.is_empty(): # This sometimes happens. Probably because we send so much data so rapidly to the poor thing
 		return false
+	
+	#print(response)
 	
 	serial.writeline(\"CONFIRM\")
 	
@@ -95,6 +97,14 @@ func update():
 			push_error(\"Arduino: Serial payload JSON deserialize error\")
 			return false
 		
+		controller = {
+			\"up\": response_json.get(\"buttons\").get(\"up\") as bool,
+			\"down\": response_json.get(\"buttons\").get(\"down\") as bool,
+			\"left\": response_json.get(\"buttons\").get(\"left\") as bool,
+			\"right\": response_json.get(\"buttons\").get(\"right\") as bool,
+			\"select\": response_json.get(\"buttons\").get(\"select\") as bool,
+		}
+		print(controller)
 		_knob_absolute_value = int(response_json.get(\"knobValue\"))
 		
 		# Calculate difference from calibration zero offset

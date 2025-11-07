@@ -1,11 +1,9 @@
 extends Node2D
 
 var switch = false
+var target
 func _ready():
 	$ButtonHint.visible = false
-
-#func _process(_delta):
-	#change_scene()
 
 func _enter_tree() -> void:
 	if !global.transition_scene:
@@ -14,8 +12,8 @@ func _enter_tree() -> void:
 
 func transitionToHallway(body):
 	if body is Player && Input.is_action_just_pressed("e"):
-			var target = load("res://scenes/hallway.tscn")
-			$SceneTransitionAnimation.change_scene(target)
+		target = load("res://scenes/hallway.tscn")
+		$SceneTransitionAnimation.change_scene(target)
 		#if body.has_method("player"):
 			#$ButtonHint.visible = true
 			#global.transition_scene = true
@@ -42,7 +40,7 @@ func onDoorTransitionPointExit(body) :
 
 func _process(delta: float) -> void:
 	if switch && Input.is_action_just_pressed("e"):
-		var target = load("res://scenes/hallway.tscn")
+		target = load("res://scenes/hallway.tscn")
 		$SceneTransitionAnimation.change_scene(target)
 
 func _on_door_body_entered(body: Node2D) -> void:

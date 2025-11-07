@@ -5,6 +5,8 @@ signal solve_minigame
 @export var claw: CharacterBody2D
 @export var robot: CharacterBody2D
 @export var cable: Line2D
+@export var arduino: Node
+
 
 const SPEED = 5
 var grappled: bool = false
@@ -15,13 +17,14 @@ func _ready():
 	cable_end = cable.global_position
 
 func handle_input():
-	if Input.is_action_pressed("ui_right") && !grappled:
+	# The Arduino buttons are mapped wrong. Select=up, left=down
+	if (Input.is_action_pressed("ui_right")) && !grappled:
 		claw.position.x += SPEED
-	elif Input.is_action_pressed("ui_left") && !grappled:
+	elif (Input.is_action_pressed("ui_left")) && !grappled:
 		claw.position.x -= 5
-	elif Input.is_action_pressed("ui_down") && !grappled:
+	elif (Input.is_action_pressed("ui_down") or arduino.controller.get("left")) && !grappled:
 		claw.position.y += SPEED
-	elif Input.is_action_pressed("ui_up"):
+	elif (Input.is_action_pressed("ui_up") or arduino.controller.get("select")):
 		claw.position.y -= SPEED
 
 
@@ -37,7 +40,7 @@ func _process(delta: float) -> void:
 		if robot.position.y <= 10:
 			# Done!
 			solve_minigame.emit()
-			
+
 	handle_input()
 
 

@@ -5,7 +5,7 @@ script/source = "extends Node
 
 class_name ArduinoInterface
 var _compass: Dictionary = {\"enabled\": true, \"angle\": 0.0}
-var _controller: Dictionary = {\"up\": false, \"down\": false, \"left\": false, \"right\": false, \"select\": false}
+var controller: Dictionary = {\"up\": false, \"down\": false, \"left\": false, \"right\": false, \"select\": false}
 var _knob_absolute_value: int = 0
 var _knob_relative_value: int = 0
 var _knob_zero_offset: int = 0 # The absolute offset from zero, we use this to calibrate the rotary encoder
@@ -97,14 +97,14 @@ func update():
 			push_error(\"Arduino: Serial payload JSON deserialize error\")
 			return false
 		
-		_controller = {
+		controller = {
 			\"up\": response_json.get(\"buttons\").get(\"up\") as bool,
 			\"down\": response_json.get(\"buttons\").get(\"down\") as bool,
 			\"left\": response_json.get(\"buttons\").get(\"left\") as bool,
 			\"right\": response_json.get(\"buttons\").get(\"right\") as bool,
 			\"select\": response_json.get(\"buttons\").get(\"select\") as bool,
 		}
-		print(_controller)
+		print(controller)
 		_knob_absolute_value = int(response_json.get(\"knobValue\"))
 		
 		# Calculate difference from calibration zero offset

@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name DialogueText
 
-signal dialogue_finished
+signal start_dialogue_finished
 
 @onready var text: RichTextLabel = $MarginContainer/Panel/Text
 
@@ -11,8 +11,6 @@ var d_active = false
 var letters_per_second: float = 20
 var dialogue_size: int = 0
 var tween: Tween
-
-@export var text_sound: AudioStream
 
 func _ready() -> void:
 	$MarginContainer.visible = false
@@ -47,6 +45,7 @@ func next_script():
 		d_active = false
 		$MarginContainer.visible = false
 		emit_signal("dialogue_finished")
+		start_dialogue_finished.emit()
 		return
 	
 	$MarginContainer/Panel/Name.text = dialogue[current_dialogue_id]["name"]

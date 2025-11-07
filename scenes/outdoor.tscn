@@ -53,6 +53,9 @@ position = Vector2(-27, -136)
 light_mask = 512
 visibility_layer = 512
 position = Vector2(-24, -135)
-limit_enabled = false
+zoom = Vector2(2, 2)
+limit_left = -510
+limit_top = -459
+limit_right = 739
 
 [editable path="player"]

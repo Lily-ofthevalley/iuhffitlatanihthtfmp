@@ -1,16 +1,18 @@
-[gd_scene load_steps=8 format=4 uid="uid://vbn7nguvekub"]
+[gd_scene load_steps=10 format=4 uid="uid://vbn7nguvekub"]
 
 [ext_resource type="Script" path="res://scripts/hallway.gd" id="1_1k2v8"]
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="3_3w3tr"]
 [ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="4_1k2v8"]
+[ext_resource type="PackedScene" uid="uid://yptfi1biv5iq" path="res://scenes/scene_transition_animation.tscn" id="6_nlnob"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="6_txc3n"]
 [ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="6_yjeik"]
+[ext_resource type="FontFile" uid="uid://cic6qm2rhbpuf" path="res://art/fonts/tinypixel.otf" id="7_yjeik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txc3n"]
 size = Vector2(13.016846, 9.215088)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1k2v8"]
-size = Vector2(58, 28)
+size = Vector2(48, 28)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1k2v8")
@@ -126,17 +128,126 @@ fact = "De koffie hier vies is"
 position = Vector2(143, 442)
 shape = SubResource("RectangleShape2D_txc3n")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(490, 469)
+[node name="doorToLab" type="Area2D" parent="."]
+position = Vector2(522, 252)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(58, 167)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doorToLab"]
+position = Vector2(59, 164)
 shape = SubResource("RectangleShape2D_1k2v8")
 
 [node name="CompassTarget" type="Marker2D" parent="."]
-position = Vector2(637, 537)
+position = Vector2(669, 320)
 
-[connection signal="body_entered" from="Area2D" to="." method="onClosetTransitionPointEntry"]
-[connection signal="body_exited" from="Area2D" to="." method="onClosetTransitionPointExit"]
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("6_nlnob")]
+visible = false
+position = Vector2(204, 525)
+
+[node name="doorToOutdoors" type="Area2D" parent="."]
+position = Vector2(490, 463)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doorToOutdoors"]
+position = Vector2(59, 166)
+shape = SubResource("RectangleShape2D_1k2v8")
+
+[node name="ButtonHintOutside" type="NinePatchRect" parent="."]
+offset_left = 515.0
+offset_top = 599.0
+offset_right = 582.0
+offset_bottom = 617.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ButtonHintOutside"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 67.0
+offset_bottom = 14.0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_constants/text_highlight_v_padding = 0
+theme_override_constants/underline_alpha = 0
+theme_override_constants/strikethrough_alpha = 0
+theme_override_constants/table_h_separation = 0
+theme_override_constants/table_v_separation = 0
+theme_override_fonts/normal_font = ExtResource("7_yjeik")
+theme_override_font_sizes/normal_font_size = 7
+text = "TO INTERECT"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="ButtonHintOutside"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 17.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ButtonHintOutside/Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 12.0
+offset_bottom = 13.0
+theme_override_fonts/normal_font = ExtResource("7_yjeik")
+theme_override_font_sizes/normal_font_size = 7
+text = "E"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonHintLab" type="NinePatchRect" parent="."]
+offset_left = 547.0
+offset_top = 426.0
+offset_right = 614.0
+offset_bottom = 444.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ButtonHintLab"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 67.0
+offset_bottom = 14.0
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_constants/text_highlight_v_padding = 0
+theme_override_constants/underline_alpha = 0
+theme_override_constants/strikethrough_alpha = 0
+theme_override_constants/table_h_separation = 0
+theme_override_constants/table_v_separation = 0
+theme_override_fonts/normal_font = ExtResource("7_yjeik")
+theme_override_font_sizes/normal_font_size = 7
+text = "TO INTERECT"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="ButtonHintLab"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 17.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ButtonHintLab/Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 12.0
+offset_bottom = 13.0
+theme_override_fonts/normal_font = ExtResource("7_yjeik")
+theme_override_font_sizes/normal_font_size = 7
+text = "E"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="doorToLab" to="." method="_on_door_body_entered_tilab"]
+[connection signal="body_exited" from="doorToLab" to="." method="_on_door_body_exited"]
+[connection signal="body_entered" from="doorToOutdoors" to="." method="_on_door_body_entered_outside"]
+[connection signal="body_exited" from="doorToOutdoors" to="." method="_on_door_body_exited"]
 
 [editable path="player"]

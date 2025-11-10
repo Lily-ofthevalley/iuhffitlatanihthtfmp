@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://be7ctlfsfho0y"]
+[gd_scene load_steps=14 format=3 uid="uid://be7ctlfsfho0y"]
 
 [ext_resource type="TileSet" uid="uid://bj41bdadvtdpk" path="res://art/tilesets/scriptkiddie.tres" id="1_4ijj3"]
 [ext_resource type="Script" uid="uid://b7kwmdcwsmthp" path="res://scenes/ti_lab.gd" id="1_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://c13025l3bph2n" path="res://scenes/player.tscn" id="3_quhyb"]
 [ext_resource type="PackedScene" uid="uid://blwvqhrwld2un" path="res://dialogue/opening_cutscene.tscn" id="4_kw4n8"]
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="4_quhyb"]
-[ext_resource type="PackedScene" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
+[ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="5_t1gnp"]
 [ext_resource type="PackedScene" uid="uid://bgkl45ckcmm32" path="res://scenes/npc.tscn" id="6_t1gnp"]
 [ext_resource type="FontFile" uid="uid://cic6qm2rhbpuf" path="res://art/fonts/tinypixel.otf" id="8_k7gr1"]
-[ext_resource type="Script" uid="uid://xu6l132hphny" path="res://scenes/path_follow_2d.gd" id="8_x1sxl"]
+[ext_resource type="Script" path="res://scenes/path_follow_2d.gd" id="8_x1sxl"]
+[ext_resource type="PackedScene" uid="uid://yptfi1biv5iq" path="res://scenes/scene_transition_animation.tscn" id="10_7uoyc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quhyb"]
 size = Vector2(30.75, 5.25)
@@ -147,10 +148,12 @@ script = ExtResource("8_x1sxl")
 [node name="npc" parent="Path2D/PathFollow2D" instance=ExtResource("6_t1gnp")]
 position = Vector2(-0.18936157, -15.998886)
 
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("10_7uoyc")]
+
 [connection signal="opening_cutscene_finish" from="player/OpeningCutscene" to="player" method="_on_opening_cutscene_finish"]
 [connection signal="opening_cutscene_finish" from="player/OpeningCutscene" to="Path2D/PathFollow2D/npc" method="_on_opening_cutscene_opening_cutscene_finish"]
-[connection signal="body_entered" from="Area2D" to="." method="transitionToHallway"]
-[connection signal="body_exited" from="Area2D" to="." method="onDoorTransitionPointExit"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_door_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_door_body_exited"]
 [connection signal="npc_reached_point" from="Path2D/PathFollow2D" to="Path2D/PathFollow2D/npc" method="_on_path_follow_2d_npc_reached_point"]
 [connection signal="start_dialogue_finished_yes" from="Path2D/PathFollow2D/npc" to="Path2D/PathFollow2D" method="_on_npc_start_dialogue_finished_yes"]
 

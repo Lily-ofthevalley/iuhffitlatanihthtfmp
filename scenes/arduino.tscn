@@ -66,7 +66,7 @@ func calibrate_knob():
 
 # This function synchronizes both ways with the Arduino. It first sends our data, and then waits for the Arduino to respond with their data.
 func update():
-	if !is_processing() or !serial.is_open():
+	if !is_processing() or !serial.is_open() or !get_tree():
 		return false
 	serial.clear_buffer()
 

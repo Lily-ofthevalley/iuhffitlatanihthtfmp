@@ -52,8 +52,8 @@ points = 16
 STEP = 3
 
 [node name="KnobTarget" type="Line2D" parent="Panel"]
-position = Vector2(290.86258, 323.731)
-rotation = 3.0589192
+position = Vector2(399.6754, 286.47443)
+rotation = -0.57871443
 points = PackedVector2Array(0, 0, 30, 0)
 default_color = Color(0, 18.892157, 0, 1)
 

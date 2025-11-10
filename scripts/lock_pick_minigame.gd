@@ -29,5 +29,7 @@ func _on_calibrate_button_pressed() -> void:
 
 
 func _on_circle_solve_minigame() -> void:
+	await get_tree().create_timer(2).timeout
 	# Switch back and reward player item and progress quest
+	get_tree().change_scene_to_file("res://scenes/hallway.tscn")
 	pass # Replace with function body.

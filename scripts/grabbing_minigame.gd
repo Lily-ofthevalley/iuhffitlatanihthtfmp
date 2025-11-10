@@ -38,9 +38,10 @@ func _process(delta: float) -> void:
 	if grappled:
 		robot.position = claw.position
 		if robot.position.y <= 10:
+			print("a")
 			# Done!
 			solve_minigame.emit()
-
+			get_tree().change_scene_to_file("res://scenes/outdoor.tscn")
 	handle_input()
 
 

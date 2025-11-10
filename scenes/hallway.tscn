@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://vbn7nguvekub"]
 
-[ext_resource type="Script" path="res://scripts/hallway.gd" id="1_1k2v8"]
+[ext_resource type="Script" uid="uid://dywht7dqylofe" path="res://scripts/hallway.gd" id="1_1k2v8"]
 [ext_resource type="PackedScene" uid="uid://cekseoerj8xp0" path="res://scenes/gui_trigger.tscn" id="3_3w3tr"]
 [ext_resource type="PackedScene" uid="uid://c1062pb2qdbpp" path="res://scenes/fact_gui.tscn" id="4_1k2v8"]
 [ext_resource type="PackedScene" uid="uid://yptfi1biv5iq" path="res://scenes/scene_transition_animation.tscn" id="6_nlnob"]
@@ -129,7 +129,7 @@ position = Vector2(143, 442)
 shape = SubResource("RectangleShape2D_txc3n")
 
 [node name="doorToLab" type="Area2D" parent="."]
-position = Vector2(522, 252)
+position = Vector2(490, 469)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="doorToLab"]
 position = Vector2(59, 164)
@@ -143,7 +143,7 @@ visible = false
 position = Vector2(204, 525)
 
 [node name="doorToOutdoors" type="Area2D" parent="."]
-position = Vector2(490, 463)
+position = Vector2(523, 212)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="doorToOutdoors"]
 position = Vector2(59, 166)
@@ -198,10 +198,10 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonHintLab" type="NinePatchRect" parent="."]
-offset_left = 547.0
-offset_top = 426.0
-offset_right = 614.0
-offset_bottom = 444.0
+offset_left = 549.0
+offset_top = 396.0
+offset_right = 616.0
+offset_bottom = 414.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ButtonHintLab"]
 layout_mode = 0
